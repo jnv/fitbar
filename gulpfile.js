@@ -35,16 +35,17 @@ gulp.task('scripts', function () {
 gulp.task('bookmarklet', function () {
   var bookmarkletify = require('bookmarkletify');
   var bookmarklet = map(function (code, filename) {
-    code = code.toString()
+    code = code.toString();
     return bookmarkletify(code);
   });
 
   return gulp.src('app/bookmarklet.js')
     .pipe($.preprocess())
     .pipe(bookmarklet)
-    .pipe($.concat('bmlt.js'))
+    .pipe($.wrap({ src: 'app/index.html'}))
+    .pipe($.concat('index.html'))
     .pipe(gulp.dest('dist'));
-})
+});
 
 // HTML
 gulp.task('html', ['styles', 'scripts'], function () {
