@@ -23,7 +23,6 @@
     }
   ];
 
-
   var generateNav = function(linksList) {
     var anchors = linksList.map(function(link){
       return '<a href="'+link.url+'">'+link.title+'</a>';
