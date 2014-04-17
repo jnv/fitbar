@@ -5,10 +5,23 @@ var open = require('open');
 var wiredep = require('wiredep').stream;
 var map = require('vinyl-map');
 var config = require('./config.json');
+var args   = require('yargs').argv;
 
 // Load plugins
 var $ = require('gulp-load-plugins')();
 
+var isDist = args.type === 'dist';
+
+var envConfig = function() {
+  if(isDist) {
+    return config.dist;
+  }
+  return config.dev;
+}
+
+var preprocess = function() {
+  return $.preprocess({context: envConfig()});
+}
 
 // Styles
 gulp.task('styles', function () {
@@ -18,7 +31,7 @@ gulp.task('styles', function () {
       loadPath: ['app/bower_components']
     }))
     .pipe($.autoprefixer('last 1 version'))
-    .pipe(gulp.dest('dist/styles'))
+    .pipe(gulp.dest('dist/'))
     .pipe($.size());
 });
 
@@ -27,8 +40,8 @@ gulp.task('scripts', function () {
   return gulp.src('app/scripts/**/*.js')
   // .pipe($.jshint('.jshintrc'))
   // .pipe($.jshint.reporter('default'))
-  .pipe($.preprocess())
-    .pipe(gulp.dest('./dist/'))
+  .pipe(preprocess())
+    .pipe(gulp.dest('dist/'))
     .pipe($.size());
 });
 
@@ -40,7 +53,7 @@ gulp.task('bookmarklet', function () {
   });
 
   return gulp.src('app/bookmarklet.js')
-    .pipe($.preprocess())
+    .pipe(preprocess())
     .pipe(bookmarklet)
     .pipe($.wrap({ src: 'app/index.html'}))
     .pipe($.concat('index.html'))
@@ -48,22 +61,22 @@ gulp.task('bookmarklet', function () {
 });
 
 // HTML
-gulp.task('html', ['styles', 'scripts'], function () {
-  var jsFilter = $.filter('**/*.js');
-  var cssFilter = $.filter('**/*.css');
+gulp.task('html', ['bookmarklet', 'styles', 'scripts'], function () {
+  // var jsFilter = $.filter('**/*.js');
+  // var cssFilter = $.filter('**/*.css');
 
-  return gulp.src('app/*.html')
-    .pipe($.useref.assets())
-    .pipe(jsFilter)
-    .pipe($.uglify())
-    .pipe(jsFilter.restore())
-    .pipe(cssFilter)
-    .pipe($.csso())
-    .pipe(cssFilter.restore())
-    .pipe($.useref.restore())
-    .pipe($.useref())
-    .pipe(gulp.dest('dist'))
-    .pipe($.size());
+  // return gulp.src('app/*.html')
+  //   .pipe($.useref.assets())
+  //   .pipe(jsFilter)
+  //   .pipe($.uglify())
+  //   .pipe(jsFilter.restore())
+  //   .pipe(cssFilter)
+  //   .pipe($.csso())
+  //   .pipe(cssFilter.restore())
+  //   .pipe($.useref.restore())
+  //   .pipe($.useref())
+  //   .pipe(gulp.dest('dist'))
+  //   .pipe($.size());
 });
 
 // Images
@@ -117,7 +130,7 @@ gulp.task('connect', function () {
 });
 
 // Open
-gulp.task('serve', ['connect', 'styles'], function () {
+gulp.task('serve', ['connect', 'html'], function () {
   open("http://localhost:9000");
 });
 
@@ -140,6 +153,7 @@ gulp.task('wiredep', function () {
 
 // Watch
 gulp.task('watch', ['connect', 'serve'], function () {
+
   // Watch for changes in `app` folder
   gulp.watch([
         'app/*.html',
@@ -162,4 +176,6 @@ gulp.task('watch', ['connect', 'serve'], function () {
 
   // Watch bower files
   gulp.watch('bower.json', ['wiredep']);
+
+  gulp.watch(['app/*.js', 'app/*.html'], ['bookmarklet']);
 });

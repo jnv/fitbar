@@ -1,8 +1,8 @@
 {
   "dev" : {
-    "baseUrl" : "http://localhost:9090"
+    "BASE_URL" : "http://localhost:9000"
   },
   "dist" : {
-    "baseUrl" : "https//jnv.github.io/fitbar"
+    "BASE_URL" : "https//jnv.github.io/fitbar"
   }
 }
