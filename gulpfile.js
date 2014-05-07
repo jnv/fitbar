@@ -6,6 +6,7 @@ var wiredep = require('wiredep').stream;
 var map = require('vinyl-map');
 var config = require('./config.json');
 var args   = require('yargs').argv;
+var path = require('path');
 
 // Load plugins
 var $ = require('gulp-load-plugins')();
@@ -19,20 +20,35 @@ var envConfig = function() {
   return config.dev;
 };
 
+var handleError = function(err) {
+  console.log(err.toString());
+  this.emit('end');
+};
+
 var preprocess = function() {
   return $.preprocess({context: envConfig()});
 };
 
 // Styles
 gulp.task('styles', function () {
-  return gulp.src('app/styles/main.scss')
+  /*return gulp.src('app/styles/main.scss')
     .pipe($.rubySass({
       style: 'expanded',
       loadPath: ['app/bower_components', 'app/styles/vendors']
     }))
+    .on('error', handleError)
     .pipe($.autoprefixer('last 1 version'))
     .pipe(gulp.dest('dist/'))
-    .pipe($.size());
+    .pipe($.size());*/
+  return gulp.src('app/styles/main.scss')
+    .pipe($.compass({
+        project: '.',
+        sass: 'app/styles',
+        css: 'dist/styles',
+        import_path: ['app/styles/vendors', 'app/bower_components'],
+    }))
+    .on('error', handleError)
+    .pipe(gulp.dest('dist/'));
 });
 
 // Scripts
