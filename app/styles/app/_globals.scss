@@ -4,11 +4,22 @@
  * by Codevels (info@codevels.com), 2013                                  *
  * =======================================================================*/
 
+/* ===== BASIC (DEFAULT) STYLES ======================= */
+
+html, body { height: 100%; }
+
+a, input[type="submit"], a:before
+{
+  @include transition ( all .35s ease );
+  outline: none !important; // Chrome reset
+}
+
+
 /* ===== ICONS & IMAGES ========================== */
 
-.ico 
+.ico
 {
-	&:before 
+	&:before
 	{
 		@include objectify ( $display: inline-block );
 	}
