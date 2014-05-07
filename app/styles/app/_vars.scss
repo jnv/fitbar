@@ -1,0 +1,121 @@
+/* =======================================================================*
+ * Global variables and layout settings, .SCSS source styles.             *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2013                                  *
+ * =======================================================================*/
+ 
+
+/* ===== INCLUDES & IMPORTS ========================== */
+
+
+/* ===== VARIABLES ==================================== */
+
+	/* Dimensions */
+
+		// Boxes
+		$web-corners: 3px;
+
+		// Header 
+		$top-panel-height: 	50px;
+
+
+	/* Colours */
+
+		// Backgrounds
+		$bg-dark: 		#424242;
+		$bg-darker: 	#333; 
+		$bg-grey: 		#626262;
+		$bg-greyer:		#777;
+		$bg-greyest: 	#a7a7a7;
+		$bg-lightest: 	#f4f4f4;
+		$bg-lighter: 	#efefef;
+		$bg-light: 		#cecece;
+		$bg-blue: 		#428bca;
+		$bg-red:		#ee4242;
+		$bg-orange:		#f9bc41;
+
+		$bg-brand: 		#f3ad21;
+
+		// Borders 
+		$border-light:  #e6e6e6;
+		$border-grey: 	#d3d3d3;
+		$border-grey-darker:#999;
+		$border-blue: 	#3b6ba0;
+		$border-red: 	#bb1d1d;
+		$border-brand: 	#d79000; 
+		$border-orange: #edb64a;
+
+		// Shadows and lights 
+
+		// Texts, fonts and font-based icons
+		$text-grey: 		#999;
+		$text-greyer: 		#7d7d7d;
+		$text-orange: 		#f3ad21;
+		$text-orange-dark:	#eca20d;
+		$text-lighter-dark: #6a6a6a;
+		$text-light-dark: 	#5a5854;
+		$text-dark: 		#424242;
+		$text-darker: 		#2f2c25;
+		$text-light: 		#a9a9a9;
+		$text-menu: 		#767676;
+		$text-headline: 	#444037;
+		$text-link-blue: 	#1f82df;
+		$text-link-bluer: 	#1668b5;
+		$text-ok:			#0aa520;
+		$text-err:			#f22b2b;
+
+		// Flash messages, notifications
+
+		// Tables 
+		$table-header: #f0f0f0;
+		$table-cell-border: #ddd;
+
+		// Forms and inputs
+		$input-text: 	$text-light-dark;
+
+		// Miscalleneous
+		$delim-grey: 	#e8e8e8;
+
+		// 3rd party
+
+
+	/* Font weights */
+	$regular: 	400;
+	$semibold: 	600;
+	$bold: 		700;
+
+	/* Project-related Mixins */
+
+
+/* ===== TWITTER BOOTSTRAP VARS ======================= */
+
+	$font-family-sans-serif:  "Open Sans", Helvetica, Arial, sans-serif;
+
+	$input-border-focus:             $bg-brand;
+
+	$state-danger-text:              #dc3f3f !default;
+	$state-danger-bg:                #f2dede !default;
+
+	// Pagination
+	$pagination-color:                     $text-dark !default;
+	$pagination-hover-color:               $text-darker !default;
+	$pagination-active-bg:                 $bg-brand !default;
+	$pagination-active-border:             $bg-brand !default;
+
+	// Medium screen / desktop
+	$screen-md:                  992px;
+ 
+	// Large screen / wide desktop
+	$screen-lg:                  1200px;
+
+
+/* ===== BASIC (DEFAULT) STYLES ======================= */
+
+html, body { height: 100%; }
+
+a, input[type="submit"], a:before
+{ 	
+	@include transition ( all .35s ease );
+	outline: none !important; // Chrome reset
+}
+

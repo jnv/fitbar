@@ -1,0 +1,189 @@
+/* =======================================================================*
+ * Plug-in overrides and style extensions, .SCSS source styles.           *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2013                                  *
+ * =======================================================================*/
+ 
+/* ===== (NO) JAVASCRIPT BACKWARD COMPATIBILITY ====== */
+
+// JS turned off
+.no-js
+{
+}
+
+// JS turned on
+.js 
+{
+}
+
+
+/* ===== JS PLUGINS ================================== */
+
+#fancybox-wrap, #fancybox-wrap *
+{
+	@include box-sizing ( initial );
+} 
+
+/* ===== BOOTSTRAP EXTENSIONS ======================== */
+
+$dropdown-shadow-bottom: 0 4px 8px rgba( #000, .15 );
+$dropdown-shadow-top: 0 -4px 8px rgba( #000, .15 );
+
+/* Dropdown-like selector based on Bootstrap */
+.bootstrap-select 
+{
+	position: relative; 
+	z-index: 49;
+
+	.btn { @include paddings ( $l: 0, $r: 0 ); }
+
+	// Select-box input
+	.dropdown-toggle 
+	{
+		@extend .form-control;
+		float: none !important;
+		text-align: left; 
+
+		&:hover, &:focus, &:active
+		{
+			background: #FFF;
+
+			.caret { opacity: 1; }
+		}
+
+		&:hover { border-color: $border-grey-darker; }
+		&:focus, &:active { border-color: $border-brand; }
+
+		// Currently selected text
+		.filter-option 
+		{ 
+			display: block;
+			color: $input-text;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			margin: 0 $padding-base-horizontal;
+		}
+
+		.caret 
+		{
+			float: right;
+			margin: 8px 12px 8px 6px;
+			@include make-caret ( 6px, $bg-dark );
+			opacity: .6;
+		}
+	}
+
+	// Dropdown container (default direction: DOWN)
+	.dropdown-menu
+	{
+		&.open 
+		{ 
+			z-index: 999;
+			display: none;
+			position: absolute;
+			margin: 1px 0 15px;
+			width: 100%;
+
+			padding: 5px 0;
+			@include rounded-corners ( $border-radius-base );
+			border: 1px solid $input-border;
+			background: #FFF;
+
+			@include box-shadow ( $dropdown-shadow-bottom );
+
+			li > a, .ui-autocomplete-item
+			{
+				display: block;
+				padding: 5px 15px;
+				color: $input-text;
+				cursor: pointer;
+
+				@include hoverify ( #FFF ) { background: $bg-brand; }
+			}
+		}
+
+		&.inner 
+		{
+			margin: 0; padding: 0;
+
+			.default { display: none; }
+
+			// 1st level item
+			& > li 
+			{
+				& > a 
+				{ 
+					display: block;
+					color: $text-dark; 
+					@include transition ( none );
+					@include hoverify ( #FFF, none );
+				}
+
+				// Dummy selection item
+				.placeholder { color: $text-grey; }
+
+				@include hoverify
+				{
+					& > a 
+					{
+						color: #FFF;
+						text-decoration: none;
+					}
+
+					.subitem:before { border-color: #FFF; }
+				}
+			}
+
+			// 2nd level item
+			.subitem 
+			{
+				@include paddings ( $t: 3px, $b: 3px );
+				font-size: 12px;
+
+				// |_ subitem icon
+				&:before 
+				{
+					@include objectify ( relative, inline-block ); top: -3px;
+					margin: 0 8px 0 2px;
+					@include size ( 6px, 6px );
+					border-left: 1px solid #c8c8c8;
+					border-bottom: 1px solid #c8c8c8;
+				}
+			}
+		}
+	}
+
+	// Dropdown menu heading to the top
+	&.dropup 
+	{
+		.dropdown-menu.open 
+		{ 
+			bottom: 35px; 
+			margin: 15px 0 1px; 
+			@include box-shadow ( $dropdown-shadow-top );
+		}
+	}
+
+	// Dropdown opened
+	&.open 
+	{
+		.dropdown-menu { display: block; }
+		.btn.dropdown-toggle 
+		{ 
+			border: 1px solid $border-brand;
+			background-color: #FFF;
+		}
+	}
+}
+
+/* Dropdown selector next to the input box */
+.input-with-select .bootstrap-select 
+{
+	float: left;
+	width: 320px;
+
+	.btn { display: block; }
+}
+
+/* ===== LIFERAY'S COMPONENTS ======================== */

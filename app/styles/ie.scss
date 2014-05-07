@@ -1,0 +1,23 @@
+/* =======================================================================*
+ * IE-specific settings, .SCSS source styles.                             *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2013                                  *
+ * =======================================================================*/
+
+
+/* ===== INCLUDES & IMPORTS ========================== */
+@import "libs/base";
+
+
+// IE fonts modification
+@mixin font-ie-import ( $url, $name )
+{
+  @font-face 
+  {
+	  font-family: $name;
+	  src: url( '#{$dir-font}' + $url + '.eot' ) format("truetype"); 
+  }
+}
+
+// Open Sans fonts for IE
+// @include font-ie-import ( "Quando-Regular", "Quando" );

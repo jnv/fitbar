@@ -1,0 +1,948 @@
+/* =======================================================================*
+ * Main website template .SCSS source styles.                             *
+ *                                                                        *
+ * by Codevels (info@codevels.com), 2013                                  *
+ * =======================================================================*/
+
+
+/* ===== INCLUDES & IMPORTS ========================== */
+
+ // 1. BASE SETTINGS & MIX-INS
+ @import "libs/base";
+
+ // 2. PROJECT VARS, LIBS VAR OVERRIDES & FONTS
+ @import "app/vars";
+ //@import "app/fonts";
+
+ // 3. FRAMEWORKS & EXTENSIONS
+ @import "vendors/bootstrap";
+
+ // 4. RESETS IF NEEDED
+ // @import "compass/reset";
+
+
+ // 5. GLOBAL UI ITEMS
+ @import "app/globals";
+
+ // 6. OTHER LAYOUT PARTS
+ @import "app/pages";
+ //@import "app/admin";
+ @import "app/forms";
+ @import "app/plugins";
+
+ // 7. HELPERS
+ //@import "libs/helpers";
+
+ // 8. MEDIA & RESPONSIVENESS
+ @import "app/media";
+ 
+
+/* ===== OVERALL LAYOUT ============================= */
+
+// Centralizing container 
+.container 
+{ 
+	@include container-fixed(); 
+	background-color: inherit; 
+}
+
+/* Top panel strip */
+.top-panel 
+{ 
+	@include fixed-panel ( 99 );
+	height: $top-panel-height;
+	background: $bg-dark; 
+	@include box-shadow( rgba( #000, .45 ) 1px 0 5px );
+
+	.container 
+	{
+		// Panel blocks
+		& > li 
+		{
+			float: right;
+			display: block;
+			height: $top-panel-height;
+		}
+
+		li  { list-style: none; }
+	}
+
+	// Standard clickable block
+	.link 
+	{ 
+		border-right: 1px solid #383838;
+
+		&:first-child { border: none; }
+
+		// Link icon
+		.ico:before { margin-right: 7px; }
+
+		a 
+		{
+			font-weight: $semibold;
+			color: $text-grey;
+
+			&:before { opacity: .45; }
+
+			@include hoverify ( #FFF, none )
+			{
+				background: $bg-darker;
+
+				&:before { opacity: 1; }	
+			}
+		}
+
+		& > a 
+		{
+			display: block;
+			padding: 0 20px;
+			line-height: $top-panel-height;
+		}
+
+		// Link with dropdown sublist 
+		&.dropdown 
+		{
+			float: left;
+			height: auto;
+
+			& > a 
+			{
+				// Caret
+				&:before 
+				{
+					@include objectify ( $display: inline-block ); top: -3px;
+					margin-right: 6px;
+					@include make-caret ( 5px, #FFF );
+				}
+			}
+
+			// Dropdown submenu opened
+			&.open 
+			{
+				.dropdown-submenu { display: block; }
+			}
+		} 
+	}
+
+	// List with links
+	.dropdown-submenu 
+	{
+		@include absolute; 
+		display: none; 
+		z-index: 9;	
+		padding: 10px 0;
+		margin-top: 10px;
+		background: $bg-darker;
+		@include box-shadow ( 0 2px 10px rgba( #000, .25 ) );
+
+		& > li > a
+		{
+			@include transition ( none );
+			display: block;
+			padding: 5px 20px;
+			
+			@include hoverify ( #FFF ) 
+			{ 
+				background: $bg-brand; 
+				font-weight: $semibold; 
+			}
+		}
+
+		// pointer
+		&:before 
+		{
+			@include objectify ( absolute ); top: 0;
+			margin: -7px 0 0 15px;
+			@include make-caret ( 8px, $bg-darker, 'top' );
+		}
+	}
+}
+
+
+	/* User-info and controls */
+	$userbar-avatar-height: 36px;
+	$userbar-avatar-width: 32px;
+	$userbar-vertical-padding: 8px;
+	$userbar-height: $userbar-avatar-height + 2 * $userbar-vertical-padding;
+
+	.userbar 
+	{
+		height: $userbar-height;
+		text-align: right;
+
+		// User picture
+		.avatar 
+		{
+			float: left;
+			@include size ( $userbar-avatar-width, $userbar-avatar-height );
+			margin-right: 7px;
+			opacity: .7; 
+		}
+
+		.userinfo
+		{
+			display: inline-block;
+			padding: 0;
+			text-align: left;
+			line-height: 1.3;
+		}
+
+		.name 
+		{
+			display: block;
+			color: #FFF;
+		}
+
+		.role 
+		{
+			font-size: 12px;
+			color: $text-light;
+		}
+
+		&.link .user
+		{
+			padding: $userbar-vertical-padding 20px;
+			height: $userbar-height;
+
+			@include hoverify { .avatar { opacity: 1; } }
+		}
+	}
+
+	/* Language bar switcher */
+	.langbar 
+	{
+		text-align: left;
+		padding: 0 20px;
+
+		& > li 
+		{
+			display: inline-block; 
+			margin: 0 1px;
+			color: $text-grey;
+			font-weight: $semibold;
+			line-height: $top-panel-height;
+
+			& > a 
+			{
+				margin: 0 1px;
+				padding: 2px 7px 3px; 
+				text-decoration: none;
+				color: inherit;
+				@include rounded-corners ( 3px );
+
+				@include hoverify ( #FFF );
+			}
+
+			&.active > a 
+			{ 
+				color: #FFF; 
+				background: $bg-grey; 
+			}
+		}
+	}
+
+/* Holder for logos & main menu */
+.header-wrapper { padding: 20px + $top-panel-height 0 5px; }
+.menu, .logo { white-space: nowrap; }
+
+/* Box with logos */
+.logos 
+{
+	@include make-xs-column ( 4 );
+	padding: 8px 0 8px 5px; 
+
+	& > a, img { display: inline-block; }
+	img { margin: 0 10px; }
+
+	// Logo-types used in headers
+	.ctu { @include img-size ( "logo-ctu.png" ); }
+	.fit { height: image-height ( "logo-fit-cz.png" ); }
+}
+
+
+/* Main menu */
+$menu-item-width: 75px;
+$menu-item-ico-width: 44px;
+$menu-item-ico-height: 30px;
+
+
+@mixin menu-icon-placement ( $index )
+{
+	background-position: -1 * $index * $menu-item-ico-width bottom;
+}
+
+@mixin menu-icon-hover-placement ( $index )
+{
+	background-position: -1 * $index * $menu-item-ico-width top;
+} 
+ 
+.menu 
+{
+	@include make-sm-column ( 8 );
+	text-align: right;
+	margin: 0;
+	white-space: normal; 
+
+	// Items
+	& > li 
+	{
+		display: inline-block;
+		@include font-params ( $text-menu, 14px, 18px, $semibold );
+		text-align: center;
+		vertical-align: top;
+
+		& > a 
+		{
+			display: inline-block;
+			padding: 7px 10px;
+			color: inherit;
+
+			@include hoverify 
+			{
+				@include rounded-corners ( 3px );
+				background: $bg-lighter;
+				color: #424242;
+			}
+		}
+
+		&.active 
+		{
+			color: $text-orange;
+			font-weight: $bold;
+
+			.ico 
+			{
+				&.faculty 	{ @include menu-icon-placement ( 0 ); }
+				&.student 	{ @include menu-icon-placement ( 1 ); }
+				&.graduates { @include menu-icon-placement ( 2 ); }
+				&.news 		{ @include menu-icon-placement ( 3 ); }
+				&.attendants{ @include menu-icon-placement ( 4 ); }
+				&.public 	{ @include menu-icon-placement ( 5 ); }
+				&.partners  { @include menu-icon-placement ( 6 ); }
+			}
+
+			& > a { @include hoverify { color: $text-orange; } }
+		}
+	}
+
+	// Menu icon
+	.ico 
+	{
+		display: block;
+		margin: 5px auto;
+		@include size ( $menu-item-ico-width, $menu-item-ico-height );
+		@include bg ( "sprites-menu.png" );
+
+		&.faculty 	{ @include menu-icon-hover-placement ( 0 ); }
+		&.student 	{ @include menu-icon-hover-placement ( 1 ); }
+		&.graduates { @include menu-icon-hover-placement ( 2 ); }
+		&.news 		{ @include menu-icon-hover-placement ( 3 ); }
+		&.attendants{ @include menu-icon-hover-placement ( 4 ); }
+		&.public 	{ @include menu-icon-hover-placement ( 5 ); }
+		&.partners  { @include menu-icon-hover-placement ( 6 ); }
+	}
+
+	// Text inside menu item
+	.label  
+	{
+		display: inline-block;
+		width: $menu-item-width;
+	}
+}
+
+/* ===== BODY & CONTENT ============================= */
+
+.body { padding: 10px 0; }
+
+
+/* Navigation breadcrumbs */
+.breadcrumbs 
+{
+	margin: .2em 0 .9em;
+	font-size: 13px;
+
+	& > a 
+	{
+		color: $text-lighter-dark;
+		text-decoration: underline;
+
+		@include hoverify ( $text-orange-dark );
+
+		// '->' icon
+		&:after 
+		{
+			@include objectify ( static, inline-block );
+			@include size ( 8px, 7px );
+			margin: 0 5px;
+			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAHCAYAAAA1WQxeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowNjgwMTE3NDA3MjA2ODExODIyQUIxOTIxQjRDRjU3QiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo4QzM1MDJBMzdDQTkxMUUzQkNGM0EwRjMxNzhBRDNGMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo4QzM1MDJBMjdDQTkxMUUzQkNGM0EwRjMxNzhBRDNGMCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjZDODIxNkEzRTc3QkUzMTFBOEFBRERGNTIyRkNFODUwIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjA2ODAxMTc0MDcyMDY4MTE4MjJBQjE5MjFCNENGNTdCIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+YUoNKgAAAFVJREFUeNpiYEACaWlpxkA8E1mMkQENABWsAlKCQBw2a9as9xgKoIo6gJQLELsyAjmhQMYqBuzgLC4T0oBUOcgEFnzGA91wjwVNEiRhDJV8DxIDCDAAVwsZbI68m34AAAAASUVORK5CYII=);
+		}
+	}
+
+	// Currently selected page
+	.active { font-weight: $semibold; }
+}
+
+/* Content */
+.content-wrapper 
+{ 
+	@include make-xs-column ( 9 ); 
+
+	// Fullscreen mode (content stretched)
+	&.full-screen { width: 100%; }
+}
+
+.content  
+{ 
+	padding-bottom: 35px;
+	
+	h1 
+	{
+		margin: 0 0 20px;
+		padding: 0 0 12px;
+		@include font-params ( $text-headline, 28px, normal, $regular );
+		border-bottom: 1px solid $bg-lighter;
+	}
+
+	h2 
+	{
+		@include font-params ( $text-headline, 18px, normal, $semibold );
+	}
+
+	& > h2 { margin: 30px 0 20px; }
+
+	p 
+	{		
+		color: $text-darker; 
+		line-height: 24px; 
+		margin-top: 20px;
+	}
+
+	& > p 
+	{
+		margin: 1em 0 0;
+	}
+
+	ul { list-style: none; }
+
+	table 
+	{
+		margin: 20px 0;
+		width: 99%; 
+		text-align: left;
+		border-bottom: 5px solid $table-header;
+
+		th, td  { padding: 10px 14px; }
+		td { border: 1px solid $table-cell-border; }
+
+		tr:first-child 
+		{
+			& > td { border-top: none; }
+		}
+
+		& > thead 
+		{
+			& > tr { background: $table-header; }
+
+			th 
+			{
+				@include paddings ( $t: 10px, $b: 10px );
+				border: 1px solid $table-header;
+			}
+		} 
+	}
+
+	// Abstract introduction
+	& > .abstract 
+	{
+		font-weight: $semibold;
+	}
+
+} 
+
+// Go up button
+.btn-up 
+{
+	float: right;
+	clear: both;
+	display: block;
+	margin: 6px 0;
+	text-align: right;
+	text-decoration: underline;
+	color: $text-light-dark;
+	@include hoverify ( $text-orange-dark, none );
+
+	&:after 
+	{
+		@include objectify ( $display: inline-block ); top: -2px;
+		margin: 0 6px;
+		@include img ( "arr-mini-up.png" );
+	}
+}
+
+.formatted-content p, .formatted-content li, .content table td 
+{
+	& > a 
+	{
+		color: $text-link-blue;
+		text-decoration: underline;
+
+		@include hoverify ( $text-link-bluer, none );
+
+		// External link to other site
+		&.external:after
+		{
+			@include objectify ( $display: inline-block ); top: 1px;
+			margin: 0 4px;
+			@include img ( "ico-external-blue.png" );
+		}
+	} 
+}
+
+/* Formatted content */
+.formatted-content 
+{
+	margin: 2em 0 2.5em;
+
+	ul, ol 
+	{
+		margin: 10px 0 25px;
+		line-height: 24px;
+
+		ul, ol { margin: 5px 0 8px;}
+	}
+
+	ul 
+	{
+		padding-left: 20px;
+
+		& > li 
+		{
+			@include bg ( "ico-list-square.png", no-repeat left 9px );
+			padding-left: 20px;
+		}
+	}
+
+	blockquote
+	{
+		margin: 20px 8px;
+
+		p 
+		{ 
+			margin: 0 0 7px; 
+			font-size: 15.5px;
+		}
+
+		.author { font-weight: $semibold; color: #848484;}
+	}
+
+	& > h2 
+	{
+		margin: 25px 0 20px;
+	}
+
+	& > h3 
+	{
+		margin: 30px 0 15px;
+		@include font-params ( $text-dark, 16px, normal, $semibold );
+	}
+
+
+	/* Structured list with files & download links */
+	.file-list
+	{
+		line-height: 1.8;
+
+		// Single file
+		li 
+		{ 
+			background: none; 
+			padding-left: 0; 
+
+			&:before 
+			{
+				@include objectify ( relative, inline-block ); top: 3px;
+				@include img ( "ico-file.png" );
+				margin-right: 9px;
+			}
+		}
+
+		.size 
+		{
+			display: inline-block;
+			width: 124px;
+			color: #848381; 
+		}
+	}
+}
+
+ 
+/* Content summary/overview including navigation links and low amount of content */
+.content-summary 
+{
+	padding: 5px 0;
+	margin: 20px 10px;
+	list-style: none;
+
+	& > li 
+	{
+		&:first-child:before, &:after 
+		{
+			@include objectify;
+			margin: 5px 0;
+			height: 3px;
+			@include bg ( "delim-dotted.png", repeat-x ); 
+		}
+
+		& > a, .title 
+		{
+			display: block;
+			padding: 5px 12px;
+			@include font-params ( $text-light-dark, 15px, normal, $semibold );
+			border-left: 5px solid $bg-greyest;
+		}
+
+		& > a  
+		{
+			@include transition ( none );
+ 
+			&:after 
+			{
+				@include objectify; top: 6px;
+				float: right;
+				opacity: .7;
+			}
+
+			@include hoverify ( $text-orange-dark, none ) 
+			{ 
+				border-left-color: $border-orange; 
+				&:after { opacity: 1; }
+
+				.link-external:before { background-position: center -16px; }
+			}
+		}
+
+		// Links to content on the same page
+		&.anchor
+		{
+			& > a:after 
+			{
+				@include img ( "arr-mini-down.png" );
+			} 
+		}
+
+		&.external
+		{
+			& > a:after 
+			{
+				@include img ( "arr-double-right.png" );
+			} 
+		} 
+	}  
+
+	/* Formatted content inside */
+	.formatted-content 
+	{ 
+		margin: 14px 20px 20px 18px; 
+
+		& > ul 
+		{ 
+			padding-left: 10px; 
+			margin: 0;
+		}
+	} 
+
+	// External icon
+	.link-external:before 
+	{
+		@include size ( 16px, 16px ); top: 2px;
+		opacity: .9;
+		margin-left: 5px;
+		@include bg ( "ico-link-external-big.png" );
+	}
+}	
+
+
+/* ===== SIDEBARS =================================== */
+
+/* Left sidebar */
+.sidebar
+{
+	@include make-xs-column ( 3 );
+	padding-left: 0;
+
+	& > aside { background: $bg-lighter; margin-bottom: 20px; }
+}
+
+/* Secondary menu */
+.secondary-menu
+{
+	padding: 10px 0;
+
+	ul 
+	{
+		padding: 0; margin: 0;
+		list-style: none; 
+	}
+
+	.submenu, .sub-submenu 
+	{
+		// Delimiter line between menu links
+		& > li:after 
+		{
+			display: block;
+			@include objectify;
+			height: 1px;
+			background: #d3d3d3;
+		}
+
+		& > li 
+		{
+			&:last-child:after { display: none; }
+		}
+	}
+
+	// 1st level
+	.submenu 
+	{ 
+		// 1st level submenu item
+		& > li 
+		{
+			&:last-child:after 
+			{
+				display: none;
+			}
+
+			&:after { margin: 0 20px; }
+
+			// Currently selected menu item
+			&.active 
+			{
+				&:after { display: none; }
+				& > a 
+				{
+					background: $bg-grey;
+					font-weight: $semibold;
+					color: #FFF;
+					border-left: 6px solid $bg-orange;
+
+					&:before 
+					{ 
+						margin-left: 0;
+						@include bg ( "ico-arr-right-white.png" ); 
+					}
+
+					// Right Caret
+					&:after 
+					{
+						@include objectify ( absolute );
+						right: 0; top: 50%;
+						margin: -8px -6px 0 0;
+						@include make-caret ( 8px, $bg-grey, 'right' );
+					}
+
+					@include hoverify ( #FFF )
+					{
+						&:before 
+						{ 
+							margin-left: 0; 
+							@include bg ( "ico-arr-right-white.png" ); 
+						}
+					}
+				}
+			}
+		
+			& > a 
+			{
+				position: relative;
+				@include transition ( linear 0s );
+				display: block;
+				padding: 10px 20px;
+				font-size: 14px;
+				color: $text-dark;
+
+				@include hoverify ( $text-orange-dark, none )
+				{
+					font-weight: $semibold;
+
+					&:before 
+					{ 
+						margin-left: 9px; 
+						@include bg ( "ico-arr-right-orange.png" ); 
+					}
+				}
+
+				// > icon
+				&:before 
+				{
+					@include objectify ( relative, inline-block ); top: -1px;
+					margin: 0 12px 0 6px;
+					@include img ( "ico-arr-right-black.png" );
+				}
+
+			}
+		}
+
+		// 2nd level sub-submenu
+		.sub-submenu 
+		{
+			background: #FFF;
+			padding: 3px 0;
+
+			& > li 
+			{
+				&:after { margin: 0 16px; background: #e0e0e0; }
+				&.active 
+				{
+					& > a 
+					{
+						color: $text-orange-dark;
+						font-weight: $semibold;
+					}	
+				}
+			}
+
+			a 
+			{
+				display: block;
+				padding: 9px 22px;
+				color: $text-lighter-dark;
+				font-size: 13px;
+
+				@include hoverify ( $text-orange-dark, none );
+			}
+
+			// 3rd level and lower levels...
+			.sub-submenu 
+			{
+				margin: 3px 15px 12px;
+				padding: 0;
+
+				& > li:after
+				{
+					display: none;
+					line-height: 1;
+				}
+
+				a
+				{
+					@include paddings ( $t: 5px, $b: 5px) ;
+					font-size: 12px;
+				}
+			}
+		}
+
+	}
+
+
+
+}
+
+/* ===== FOOTER ===================================== */
+
+body > footer 
+{
+	background: $bg-dark;
+	color: $text-grey;
+	font-size: 12px;
+
+	.links 
+	{
+		overflow: hidden;
+		border-bottom: 1px solid #585858;
+		padding: 20px 0 40px 0;
+		margin-bottom: 20px;
+	}
+
+	// List with items
+	.link-list 
+	{
+		@include make-xs-column ( 3 );
+
+		& > h2 
+		{
+			margin: 0 0 15px;
+			color: #d9d9d9;
+			text-transform: uppercase;
+			font-size: 16px;
+			font-weight: $bold;
+		}
+
+		& > ul 
+		{
+			list-style: none;
+			padding: 0;
+			font-size: 14px;
+			font-weight: $semibold;
+			line-height: 2.1;
+
+			// Links
+			& > li > a 
+			{
+				color: $text-grey;
+
+				@include hoverify ( #FFF, none )
+				{
+					&:before { opacity: 1; }
+				}
+
+				&:before 
+				{
+					@include objectify( relative, inline-block ); top: -1px;
+					@include img ( "ico-arr-right-white.png");
+					opacity: .45;
+					margin: 0 8px 0 13px;
+				}
+			}	
+		}
+
+		// Social media links (icons)
+		&.social 
+		{
+			text-align: right;
+
+			li 
+			{ 
+				display: inline-block; 
+				margin: 0 3px;
+
+				img { @include size ( 35px ); }
+
+				& > a 
+				{
+					display: inline-block;
+					background: $bg-light;
+
+					&:before { display: none; }
+
+					@include hoverify
+					{
+						background: #FFF;
+						& > img { opacity: .85; }
+					}
+				}
+				
+			}
+		} 
+	}
+
+	strong { font-weight: $bold; }
+	.container { padding: 20px 0; }
+
+	.support 
+	{
+		@include make-xs-column ( 4 );
+		.msmt-logo { float: left; margin-right: 10px; }
+	}
+
+	.copy 
+	{
+		text-align: right;
+		@include make-xs-column ( 8 );
+	}
+}
+
+
+/* ===== OVERRIDES (MUST BE AT THE END) ============= */
+
+ // 9. OVERRIDES
+ @import "app/overrides";
