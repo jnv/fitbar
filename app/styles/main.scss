@@ -1,9 +1,7 @@
 // 1. BASE SETTINGS & MIX-INS
-@import "libs/base";
+@import "fit/libs/base";
 
 // 2. PROJECT VARS, LIBS VAR OVERRIDES & FONTS
-@import "app/vars";
+@import "fit/app/vars";
 
-
-
-
+@import "components/fitbar";
