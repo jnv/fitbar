@@ -1,7 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
-var open = require('open');
+// var open = require('open');
 var wiredep = require('wiredep').stream;
 var map = require('vinyl-map');
 var config = require('./config.json');
@@ -17,18 +17,18 @@ var envConfig = function() {
     return config.dist;
   }
   return config.dev;
-}
+};
 
 var preprocess = function() {
   return $.preprocess({context: envConfig()});
-}
+};
 
 // Styles
 gulp.task('styles', function () {
   return gulp.src('app/styles/main.scss')
     .pipe($.rubySass({
       style: 'expanded',
-      loadPath: ['app/bower_components']
+      loadPath: ['app/bower_components', 'app/styles/vendors']
     }))
     .pipe($.autoprefixer('last 1 version'))
     .pipe(gulp.dest('dist/'))
@@ -131,7 +131,7 @@ gulp.task('connect', function () {
 
 // Open
 gulp.task('serve', ['connect', 'html'], function () {
-  open("http://localhost:9000");
+  //open('http://localhost:9000');
 });
 
 // Inject Bower components
