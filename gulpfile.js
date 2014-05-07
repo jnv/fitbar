@@ -46,8 +46,8 @@ gulp.task('styles', function () {
         sass: 'app/styles',
         css: 'dist/styles',
         import_path: ['app/styles/vendors', 'app/bower_components'],
-    }))
-    .on('error', handleError)
+    }).on('error', handleError)
+    )
     .pipe(gulp.dest('dist/'));
 });
 
