@@ -10,6 +10,10 @@ $barHeight: 40px; // $top-panel-height
   background: $bg-dark;
   @include box-shadow( rgba( #000, .45 ) 1px 0 5px );
 
+  .links {
+
+  }
+
   ul, li {
     margin: 0;
     padding: 0;
@@ -18,8 +22,8 @@ $barHeight: 40px; // $top-panel-height
     list-style: none;
   }
   a {
-    font-weight: 600;
-    color: #999999;
+    font-weight: $semibold;
+    color: $text-grey;
     text-decoration: none;
   }
   a:hover,
@@ -61,4 +65,8 @@ $barHeight: 40px; // $top-panel-height
   .dropdown:focus .dropdown-submenu {
     display: block;
   }
+}
+
+#fitbar-util {
+  float: right;
 }
