@@ -1,0 +1,110 @@
+.top-panel
+{
+  @include fixed-panel ( 99 );
+  height: $top-panel-height;
+  background: $bg-dark;
+  @include box-shadow( rgba( #000, .45 ) 1px 0 5px );
+
+  .container
+  {
+    // Panel blocks
+    & > li
+    {
+      float: right;
+      display: block;
+      height: $top-panel-height;
+    }
+
+    li  { list-style: none; }
+  }
+
+  // Standard clickable block
+  .link
+  {
+    border-right: 1px solid #383838;
+
+    &:first-child { border: none; }
+
+    // Link icon
+    .ico:before { margin-right: 7px; }
+
+    a
+    {
+      font-weight: $semibold;
+      color: $text-grey;
+
+      &:before { opacity: .45; }
+
+      @include hoverify ( #FFF, none )
+      {
+        background: $bg-darker;
+
+        &:before { opacity: 1; }
+      }
+    }
+
+    & > a
+    {
+      display: block;
+      padding: 0 20px;
+      line-height: $top-panel-height;
+    }
+
+    // Link with dropdown sublist
+    &.dropdown
+    {
+      float: left;
+      height: auto;
+
+      & > a
+      {
+        // Caret
+        &:before
+        {
+          @include objectify ( $display: inline-block ); top: -3px;
+          margin-right: 6px;
+          @include make-caret ( 5px, #FFF );
+        }
+      }
+
+      // Dropdown submenu opened
+      &.open
+      {
+        .dropdown-submenu { display: block; }
+      }
+    }
+  }
+
+  // List with links
+  .dropdown-submenu
+  {
+    @include absolute;
+    display: none;
+    z-index: 9;
+    padding: 10px 0;
+    margin-top: 10px;
+    background: $bg-darker;
+    @include box-shadow ( 0 2px 10px rgba( #000, .25 ) );
+
+    & > li > a
+    {
+      @include transition ( none );
+      display: block;
+      padding: 5px 20px;
+
+      @include hoverify ( #FFF )
+      {
+        background: $bg-brand;
+        font-weight: $semibold;
+      }
+    }
+
+    // pointer
+    &:before
+    {
+      @include objectify ( absolute ); top: 0;
+      margin: -7px 0 0 15px;
+      @include make-caret ( 8px, $bg-darker, 'top' );
+    }
+  }
+}

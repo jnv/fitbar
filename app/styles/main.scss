@@ -1,7 +1,9 @@
-// 1. BASE SETTINGS & MIX-INS
+// Vendor specific files
 @import "fit/libs/base";
-
-// 2. PROJECT VARS, LIBS VAR OVERRIDES & FONTS
 @import "fit/app/vars";
 
+// Local mixins and dependencies
+@import "mixins";
+
+// Components
 @import "components/fitbar";
