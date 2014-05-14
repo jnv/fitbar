@@ -1,6 +1,5 @@
 (function(document){
   'use strict';
-  var WRAPPER_ID = 'fitbar';
   var LINKS = [
     {
       title: 'FIT',
@@ -24,25 +23,51 @@
     }
   ];
 
-  var generateNav = function(linksList) {
-    var anchors = linksList.map(function(link){
-      return '<a href="'+link.url+'">'+link.title+'</a>';
-    });
+  var Fitbar = (function(){
+    var wrapperId = 'fitbar',
+        linksList,
+        container;
 
-    var nav = document.createElement('nav');
-    nav.innerHTML = anchors.join('');
-    nav.className = 'links';
-    return nav;
-  };
+    var setLinks = function(links) {
+      linksList = links;
+      return this;
+    };
 
-  var generateBar = function() {
-    var bar = document.createElement('div');
+    var getContainer = function() {
+      if(!container) {
+        container = document.createElement('div');
+        container.id = wrapperId;
+      }
+      return container;
+    };
 
-    bar.id = WRAPPER_ID;
-    bar.appendChild(generateNav(LINKS));
+    var generateNav = function(linksList) {
+      var anchors = linksList.map(function(link){
+        return '<a href="'+link.url+'">'+link.title+'</a>';
+      });
 
-    return bar;
-  };
+      var nav = document.createElement('nav');
+      nav.innerHTML = anchors.join('');
+      nav.className = 'links';
+      return nav;
+    };
+
+    var toDom = function() {
+      var bar = getContainer();
+      bar.appendChild(generateNav(linksList));
+
+      return bar;
+    };
+
+    return {
+      getContainer: getContainer,
+      setLinks: setLinks,
+      toDom: toDom
+    };
+
+  }());
+
+
 
   var getElementExpander = function(el) {
     var styles = window.getComputedStyle(el);
@@ -68,10 +93,9 @@
     return link;
   };
 
-  var fitbar = generateBar();
-  document.body.insertBefore(fitbar, document.body.firstElementChild);
+  var bar = Fitbar.setLinks(LINKS).toDom();
+  document.body.insertBefore(bar, document.body.firstElementChild);
   document.head.appendChild(generateStylesheetLink('/* @echo BASE_URL *//main.css'));
-
-  setBarPosition(fitbar, getElementExpander(document.body));
+  setBarPosition(bar, getElementExpander(document.body));
 
 })(document);
