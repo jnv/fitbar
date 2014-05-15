@@ -1,5 +1,5 @@
 'use strict';
-function Fitbar(){
+var Fitbar = function() {
     var wrapperId = 'fitbar',
         linksList,
         container;

@@ -1,44 +1,85 @@
 $barHeight: 40px; // $top-panel-height
 
+%base-font {
+  font-family: $font-family-sans-serif;
+  font-size: 14px;
+  font-weight: $semibold;
+  color: $text-grey;
+  text-decoration: none;
+}
+
+%font-highlight {
+  color: white;
+  text-decoration: none;
+}
+
+%block-link {
+  display: block;
+  line-height: $barHeight;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+%block-link-highlight {
+  background: #333;
+}
+
+%dropdown-arrow {
+  &:before {
+    position: relative;
+    display: inline-block;
+    content: " ";
+    top: -3px;
+    margin-right: 6px;
+    border-left: 5px solid transparent;
+    border-top: 5px solid white;
+    border-right: 5px solid transparent;
+  }
+}
+
+// Priority styles
 #fitbar {
   width: 100%;
   height: $barHeight;
 
-  font-family: $font-family-sans-serif;
-  font-size: 14px;
-
   background: $bg-dark;
   @include box-shadow( rgba( #000, .45 ) 1px 0 5px );
 
-  .links {
-
-  }
-
-  ul, li {
-    margin: 0;
-    padding: 0;
-  }
-  li {
-    list-style: none;
-  }
-  a {
-    font-weight: $semibold;
-    color: $text-grey;
-    text-decoration: none;
+  &, a {
+    @extend %base-font;
   }
   a:hover,
   a:focus {
-    color: white;
-    text-decoration: none;
-    background: #333333;
+
   }
-  .links li {}
-  .links > a {
+}
+
+.fitbar {
+}
+
+// links block
+.fitbar-links {
+  & {
+  }
+
+  a {
+    @extend %block-link;
     float: left;
-    display: block;
-    line-height: $barHeight;
-    padding: 0 20px;
   }
+}
+
+// 'More' dropdown block
+.fitbar-links {
+
+  &__more-title {
+    @extend %block-link;
+    @extend %dropdown-arrow;
+  }
+
+  &__more-content {
+    display: none;
+  }
+
   .dropdown > a:before {
     position: relative;
     display: inline-block;
@@ -67,6 +108,15 @@ $barHeight: 40px; // $top-panel-height
   }
 }
 
-#fitbar-util {
-  float: right;
+.fitbar__utils {
+  & {
+    float: right;
+  }
+  .fitbar__block {
+    display: inline-block;
+  }
+}
+
+.fitbar-notify {
+
 }

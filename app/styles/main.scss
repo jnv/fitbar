@@ -1,9 +1,11 @@
 // Vendor specific files
-@import "fit/libs/base";
-@import "fit/app/vars";
+// @import "fit/libs/base";
+// @import "fit/app/vars";
 
 // Local mixins and dependencies
-@import "mixins";
+// @import "mixins";
 
 // Components
-@import "components/fitbar";
+//@import "components/fitbar";
+
+@import "fit/style";

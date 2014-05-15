@@ -45,6 +45,7 @@ gulp.task('styles', function () {
         project: '.',
         sass: 'app/styles',
         css: 'dist/styles',
+        image: 'app/images',
         import_path: ['app/styles/vendors', 'app/bower_components'],
     }).on('error', handleError)
     )

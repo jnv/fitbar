@@ -232,7 +232,7 @@
 			@include objectify( absolute, block ); top: 50%; right: 0;
 			float: right;
 			margin: -5px 10px 0 10px;
-			@include img ( "ico-double-right-big.png" );
+			// @include img ( "ico-double-right-big.png" );
 			opacity: .65;
 		}
 	}
@@ -544,7 +544,7 @@ $contact-ico-size: 13px;
 		{
 			@include objectify ( $display: inline-block ); top: 3px;
 			margin: 0 10px 0 0;
-			@include img ( "ico-publication.png" );
+			// @include img ( "ico-publication.png" );
 		}
 	}
 }  
@@ -565,7 +565,7 @@ $contact-ico-size: 13px;
 		{
 			@include objectify ( $display: inline-block ); top: 2px;
 			margin: 0 10px 0 0;
-			@include img ( "ico-event.png" );
+			// @include img ( "ico-event.png" );
 		}
 	}
 }

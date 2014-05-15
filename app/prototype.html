@@ -1,29 +1,63 @@
 <!doctype html>
 <html class="no-js">
-<head>
-  <meta charset="utf-8">
-  <title>Fitbar Prototyping</title>
-  <link rel="stylesheet" href="main.css">
-</head>
-<body>
-  <div class="fitbar" id="fitbar">
-    <nav class="fitbar__links">
-      <a href="https://fit.cvut.cz/">FIT</a>
-      <a href="https://kos.is.cvut.cz/">KOS</a>
-      <a href="https://edux.fit.cvut.cz/">Edux</a>
-      <div class="fitbar__dropdown">
-        <span class="fitbar__dropdown-holder">Více</span>
-        <div class="fitbar__dropdown-content">
-          <a href="https://timetable.fit.cvut.cz/">Timetable</a>
-          <a href="https://gitlab.fit.cvut.cz/">GitLab</a>
+  <head>
+    <meta charset="utf-8">
+    <title>Fitbar Prototyping</title>
+    <link rel="stylesheet" href="main.css">
+    <!-- bower:css -->
+    <!-- endbower -->
+  </head>
+  <body>
+    <!--<div class="fitbar" id="fitbar">
+        <nav class="fitbar-links fitbar__block">
+          <a href="https://fit.cvut.cz/">FIT</a>
+          <a href="https://kos.is.cvut.cz/">KOS</a>
+          <a href="https://edux.fit.cvut.cz/">Edux</a>
+          <div class="fitbar-links__more">
+              <span class="fitbar-links__more-title">Více</span>
+              <div class="fitbar-links__more-content">
+                <a href="https://timetable.fit.cvut.cz/">Timetable</a>
+                <a href="https://gitlab.fit.cvut.cz/">GitLab</a>
+              </div>
+          </div>
+        </nav>
+        <div class="fitbar__utils">
+          <div class="fitbar-notify fitbar__block">
+              <a href="" class="fitbar-notify__indicator fitbar-notify__indicator--active">0</a>
+          </div>
+          <div class="fitbar-account fitbar__block">
+            <a href="" class="fitbar-account__login">Přihlásit</a>
+          </div>
         </div>
-      </div>
-    </nav>
-    <div class="fitbar__utils">
-      <a href="" class="fitbar__notify fitbar__notify--active">0</a>
-      <a href="" class="fitbar__login">Přihlásit</a>
-    </div>
-  </div>
-  <h1>Content goes here</h1>
-</body>
+    </div>-->
+    <section class="top-panel">
+      <ul class="container">
+        <!-- Other FIT's sites list -->
+        <li class="link dropdown">
+          <a href="#" title="IS FIT" data-toggle="dropdown">IS FIT</a>
+          <ul class="dropdown-submenu">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="http://kos.is.cvut.cz" title="Komponenta studium">KOS</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="/group/ssp" title="Spolupráce s průmyslem">Spolupráce s průmyslem</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="http://edux.fit.cvut.cz/" title="EDUX">EDUX</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="http://usermap.cvut.cz" title="Databáze uživatelů ČVUT">Usermap</a></li>
+          </ul>
+        </li>
+        <!-- Login / Logout button -->
+        <li class="link"> <a href="/c/portal/login?p_l_id=66683" title="Přihlásit" class="ico login" role="menuitem">Přihlásit</a> </li>
+        <!-- User info & quick links -->
+        <li class="userbar link">
+          <a href="#" title="Show user profile" class="user">
+            <img src="img/avatar-default.jpg" class="avatar">
+            <span class="userinfo">
+            <span class="name">Frantisek Omacka</span> <span class="role">Sponzor, Teacher</span> </span>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <h1>Content goes here</h1>
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endbower -->
+  </body>
 </html>
