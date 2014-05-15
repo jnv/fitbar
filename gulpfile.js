@@ -6,7 +6,7 @@ var wiredep = require('wiredep').stream;
 var map = require('vinyl-map');
 var config = require('./config.json');
 var args   = require('yargs').argv;
-var path = require('path');
+var gutil = require('gulp-util');
 
 // Load plugins
 var $ = require('gulp-load-plugins')();
@@ -53,10 +53,19 @@ gulp.task('styles', function () {
 
 // Scripts
 gulp.task('scripts', function () {
-  return gulp.src('app/scripts/**/*.js')
+  var browserify = require('browserify');
+  var source = require('vinyl-source-stream');
+  // return gulp.src('app/scripts/**/*.js')
   // .pipe($.jshint('.jshintrc'))
   // .pipe($.jshint.reporter('default'))
-  .pipe(preprocess())
+  return browserify({
+      entries: './app/scripts/main.js'
+    }).bundle({debug: envConfig().DEBUG})
+    .on('error',gutil.log)
+    .pipe(source('main.js'))
+    .pipe($.buffer())
+    .pipe(preprocess())
+    // .pipe($.stream())
     .pipe(gulp.dest('dist/'))
     .pipe($.size());
 });
