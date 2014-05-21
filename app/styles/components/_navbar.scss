@@ -4,38 +4,41 @@
     top: -3px;
     margin-right: 6px;
     @include make-caret ( 5px, $navbar-inverse-color );
-
   }
 
-  .open &, &:hover {
+  .open &, &:hover, &:focus, &:active {
     &:before {
       @include make-caret ( 5px, $navbar-inverse-link-hover-color );
     }
   }
-
 }
 
 .navbar-inverse {
   @include box-shadow( rgba( #000, .45 ) 1px 0 5px );
 }
+
+// TODO: this could be probably global to navbar-nav
 .navbar-nav > li > a,
 .dropdown-menu > li > a {
   font-weight: $semibold;
 }
 
+// Link to the dropdown menu
+.navbar-nav > li > .dropdown-toggle {
+  @extend %dropdown-caret;
+}
+
+
+// Dropdown menu itself
 .navbar-nav > li > .dropdown-menu {
   margin-top: 10px;
   @include border-top-radius(0);
 
-  // pointer
+  // caret
   &:before
   {
     @include objectify ( absolute ); top: 0;
     margin: -7px 0 0 15px;
     @include make-caret ( 8px, $bg-darker, 'top' );
   }
-}
-
-.navbar-nav > li > .dropdown-toggle {
-  @extend %dropdown-caret;
 }
