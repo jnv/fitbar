@@ -1,21 +1,64 @@
 /* User-info and controls */
-$userbar-avatar-height: 36px;
-$userbar-avatar-width: 32px;
+$userbar-avatar-height: 24px;
+$userbar-avatar-width: 24px;
 $userbar-vertical-padding: 8px;
 $userbar-height: $userbar-avatar-height + 2 * $userbar-vertical-padding;
 
+// top-level menu item
+.userbar-dropdown {
+
+}
+
+.userbar-avatar-thumb {
+  @include size ( $userbar-avatar-width, $userbar-avatar-height );
+  opacity: .7;
+  @include hoverify { .avatar { opacity: 1; } }
+}
+
+// Same as dropdown-menu
+.userbar-menu {
+  min-width: 200px;
+  // box pointer: fine tune position
+}
+
+.userbar-container {
+
+}
+
+// Anchor
+.userbar-logout {
+  display: inline-block;
+  float: right;
+  background: $bg-dark;
+}
+
+
+.userinfo
+{
+  display: inline-block;
+  padding: 3px 20px;
+  text-align: left;
+  line-height: 1.3;
+
+  .name
+  {
+    display: block;
+    color: #FFF;
+  }
+
+  .role
+  {
+    font-size: 12px;
+    color: $text-light;
+  }
+}
+
 .userbar
 {
-  height: $userbar-height;
-  text-align: right;
-
   // User picture
   .avatar
   {
-    float: left;
-    @include size ( $userbar-avatar-width, $userbar-avatar-height );
-    margin-right: 7px;
-    opacity: .7;
+
   }
 
   .userinfo

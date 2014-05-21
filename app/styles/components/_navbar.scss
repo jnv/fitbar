@@ -1,3 +1,5 @@
+// Customization for navbar-nav and dropdowns
+
 %dropdown-caret {
   &:before {
     @include objectify ( $display: inline-block );
@@ -33,8 +35,9 @@
 .navbar-nav > li > .dropdown-menu {
   margin-top: 10px;
   @include border-top-radius(0);
+  color: $navbar-inverse-color;
 
-  // caret
+  // box pointer
   &:before
   {
     @include objectify ( absolute ); top: 0;
@@ -42,3 +45,20 @@
     @include make-caret ( 8px, $bg-darker, 'top' );
   }
 }
+
+.navbar-nav > li {
+
+  > .userbar-menu {
+    &:before
+    {
+      right: 0;
+      margin-left: 0;
+      margin-right: 17px;
+    }
+  }
+}
+
+.navbar-nav > li > .notifications-menu {
+
+}
+
