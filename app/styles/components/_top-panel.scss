@@ -10,12 +10,17 @@
     // Panel blocks
     & > li
     {
-      float: right;
+      float: left;
       display: block;
       height: $top-panel-height;
     }
 
     li  { list-style: none; }
+
+    li.util
+    {
+      float: right
+    }
   }
 
   // Standard clickable block
@@ -23,7 +28,7 @@
   {
     border-right: 1px solid #383838;
 
-    &:first-child { border: none; }
+    // &:first-child { border: none; }
 
     // Link icon
     .ico:before { margin-right: 7px; }
@@ -55,6 +60,7 @@
     {
       float: left;
       height: auto;
+      border: none;
 
       & > a
       {
