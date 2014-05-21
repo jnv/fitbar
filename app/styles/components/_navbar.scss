@@ -1,0 +1,41 @@
+%dropdown-caret {
+  &:before {
+    @include objectify ( $display: inline-block );
+    top: -3px;
+    margin-right: 6px;
+    @include make-caret ( 5px, $navbar-inverse-color );
+
+  }
+
+  .open &, &:hover {
+    &:before {
+      @include make-caret ( 5px, $navbar-inverse-link-hover-color );
+    }
+  }
+
+}
+
+.navbar-inverse {
+  @include box-shadow( rgba( #000, .45 ) 1px 0 5px );
+}
+.navbar-nav > li > a,
+.dropdown-menu > li > a {
+  font-weight: $semibold;
+}
+
+.navbar-nav > li > .dropdown-menu {
+  margin-top: 10px;
+  @include border-top-radius(0);
+
+  // pointer
+  &:before
+  {
+    @include objectify ( absolute ); top: 0;
+    margin: -7px 0 0 15px;
+    @include make-caret ( 8px, $bg-darker, 'top' );
+  }
+}
+
+.navbar-nav > li > .dropdown-toggle {
+  @extend %dropdown-caret;
+}
