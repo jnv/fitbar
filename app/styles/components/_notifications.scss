@@ -10,3 +10,52 @@
     }
   }
 }
+
+.notifications-menu {
+  min-width: 250px;
+
+  .notification-item {
+    margin-bottom: 10px;
+    padding: 3px 10px;
+    &:hover {
+      background-color: $bg-darker;
+    }
+    &.active {
+      color: #fff;
+    }
+  }
+
+  .notif-actor-avatar {
+    float: left;
+    margin-right: 5px;
+    margin-top: 5px;
+    width: 32px;
+  }
+
+  .notif-body {
+    white-space: normal;
+  }
+  .notif-body,
+  .notif-meta {
+    margin-left: 37px;
+  }
+
+  .notif-actor {
+    display: block;
+  }
+  .notif-verb {
+
+  }
+  .notif-object {
+
+  }
+
+  .notif-meta {
+    display: block;
+    margin-top: 5px;
+  }
+
+  .notif-time {
+    margin-left: 10px;
+  }
+}

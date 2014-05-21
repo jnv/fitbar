@@ -183,7 +183,7 @@ gulp.task('watch', ['connect', 'serve'], function () {
   // Watch for changes in `app` folder
   gulp.watch([
         'app/*.html',
-        'app/styles/**/*.scss',
+        'dist/**/*.css',
         'app/scripts/**/*.js',
         'app/images/**/*'
     ], function (event) {
