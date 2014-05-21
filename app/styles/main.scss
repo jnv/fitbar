@@ -5,7 +5,11 @@
 // Local mixins and dependencies
 // @import "mixins";
 
-// Components
-//@import "components/fitbar";
 
 @import "fit/style";
+
+// Components
+//@import "components/fitbar";
+@import "components/top-panel";
+@import "components/notifications";
+@import "components/userbar";
