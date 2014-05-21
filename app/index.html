@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>Fitbar Prototyping</title>
-    <link rel="stylesheet" href="main.css">
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
+    <link rel="stylesheet" href="main.css">
   </head>
   <body>
     <!--<div class="fitbar" id="fitbar">
@@ -30,15 +31,35 @@
           </div>
         </div>
     </div>-->
-    <section class="top-panel">
-      <ul class="container">
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+      <ul class="nav navbar-nav">
         <!-- Other FIT's sites list -->
-        <li class="link"><a href="https://fit.cvut.cz/">FIT</a></li>
-        <li class="link"><a href="https://kos.is.cvut.cz/">KOS</a></li>
-        <li class="link"><a href="https://edux.fit.cvut.cz/">Edux</a></li>
-        <li class="link dropdown">
-          <a href="#" data-toggle="dropdown">Více</a>
-          <ul class="dropdown-submenu">
+        <li class=""><a href="https://fit.cvut.cz/">FIT</a></li>
+        <li class=""><a href="https://kos.is.cvut.cz/">KOS</a></li>
+        <li class=""><a href="https://edux.fit.cvut.cz/">Edux</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Více</a>
+          <ul class="dropdown-menu">
+            <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="http://kos.is.cvut.cz" title="Komponenta studium">KOS</a>
+            </li>
+            <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="/group/ssp" title="Spolupráce s průmyslem">Spolupráce s průmyslem</a>
+            </li>
+            <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="http://edux.fit.cvut.cz/" title="EDUX">EDUX</a>
+            </li>
+            <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="http://usermap.cvut.cz" title="Databáze uživatelů ČVUT">Usermap</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="link util notifications-dropdown dropdown">
+          <a href="#" title="" class="notifications-indicator" data-toggle="dropdown">0</a>
+          <ul class="dropdown-menu notifications-list">
             <li role="presentation">
             <a role="menuitem" tabindex="-1" href="http://kos.is.cvut.cz" title="Komponenta studium">KOS</a>
             </li>
@@ -67,7 +88,8 @@
           </a>
         </li>
       </ul>
-    </section>
+      </div>
+    </nav>
     <h1>Content goes here</h1>
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
