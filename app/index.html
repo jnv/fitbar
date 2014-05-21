@@ -56,20 +56,22 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+
+        <!-- notifications menu -->
         <li class="notifications-dropdown dropdown">
           <a href="#" class="notifications-indicator notifications-toggle" data-toggle="dropdown">0</a>
-          <ul class="dropdown-menu notifications-list">
+          <ul class="dropdown-menu notifications-menu">
             <li role="presentation">
-            <a role="menuitem" tabindex="-1" href="http://kos.is.cvut.cz" title="Komponenta studium">KOS</a>
+              <a role="menuitem" tabindex="-1" href="http://kos.is.cvut.cz" title="Komponenta studium">KOS</a>
             </li>
             <li role="presentation">
-            <a role="menuitem" tabindex="-1" href="/group/ssp" title="Spolupráce s průmyslem">Spolupráce s průmyslem</a>
+              <a role="menuitem" tabindex="-1" href="/group/ssp" title="Spolupráce s průmyslem">Spolupráce s průmyslem</a>
             </li>
             <li role="presentation">
-            <a role="menuitem" tabindex="-1" href="http://edux.fit.cvut.cz/" title="EDUX">EDUX</a>
+              <a role="menuitem" tabindex="-1" href="http://edux.fit.cvut.cz/" title="EDUX">EDUX</a>
             </li>
             <li role="presentation">
-            <a role="menuitem" tabindex="-1" href="http://usermap.cvut.cz" title="Databáze uživatelů ČVUT">Usermap</a>
+              <a role="menuitem" tabindex="-1" href="http://usermap.cvut.cz" title="Databáze uživatelů ČVUT">Usermap</a>
             </li>
           </ul>
         </li>
@@ -95,7 +97,12 @@
       </ul>
       </div>
     </nav>
+    <div class="container">
     <h1>Content goes here</h1>
+
+    <button type="button" id="js-addnotification">Add notification</button>
+    <button type="button" id="js-resetnotification">Reset notification</button>
+    </div>
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -103,8 +110,31 @@
     <script>
     $(function(){
       'use strict';
+
+
+      var notifCnt = 0;
+      function addNotification() {
+        notifCnt++;
+        setNotficationIndicator();
+      };
+      function resetNotification() {
+        notifCnt = 0;
+        setNotficationIndicator();
+      }
+
+      function setNotficationIndicator() {
+        var $ind = $('.notifications-indicator');
+
+        $ind.text(notifCnt);
+        $ind.toggleClass('active', (notifCnt > 0));
+      }
+
+      $('#js-addnotification').click(addNotification);
+      $('#js-resetnotification').click(resetNotification);
+
+
       $('.js-logged-in').hide();
-      $('.js-logged-in,.js-logged-out').toggle();
+      // $('.js-logged-in,.js-logged-out').toggle();
       $('[data-login]').click(function(e){
         e.preventDefault();
         $('.js-logged-in,.js-logged-out').toggle();

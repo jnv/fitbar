@@ -48,7 +48,8 @@
 
 .navbar-nav > li {
 
-  > .userbar-menu {
+  > .userbar-menu,
+  > .notifications-menu {
     &:before
     {
       right: 0;
@@ -56,9 +57,11 @@
       margin-right: 17px;
     }
   }
+
+  > .notifications-menu {
+    &:before
+    {
+      margin-right: 10px;
+    }
+  }
 }
-
-.navbar-nav > li > .notifications-menu {
-
-}
-

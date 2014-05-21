@@ -1,0 +1,12 @@
+.notifications-dropdown {
+
+  .notifications-indicator {
+    background-color: $bg-darker;
+    &.active {
+      &, &:hover, &:focus, &:active {
+        background-color: $bg-brand !important;
+        color: $bg-darker !important;
+      }
+    }
+  }
+}
