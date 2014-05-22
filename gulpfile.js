@@ -6,7 +6,7 @@ var wiredep = require('wiredep').stream;
 var map = require('vinyl-map');
 var config = require('./config.json');
 var args   = require('yargs').argv;
-var gutil = require('gulp-util');
+// var gutil = require('gulp-util');
 
 // Load plugins
 var $ = require('gulp-load-plugins')();
@@ -42,11 +42,11 @@ gulp.task('styles', function () {
     .pipe($.size());*/
   return gulp.src('app/styles/main.scss')
     .pipe($.compass({
-        project: '.',
-        sass: 'app/styles',
-        css: 'dist/styles',
-        image: 'app/images',
-        import_path: ['app/styles/vendors', 'app/bower_components'],
+      project: '.',
+      sass: 'app/styles',
+      css: 'dist/styles',
+      image: 'app/images',
+      import_path: ['app/styles/vendors', 'app/bower_components'],
     }).on('error', handleError)
     )
     .pipe(gulp.dest('dist/'));
@@ -62,7 +62,7 @@ gulp.task('scripts', function () {
   return browserify({
       entries: './app/scripts/main.js'
     }).bundle({debug: envConfig().DEBUG})
-    .on('error',gutil.log)
+    .on('error',$.util.log)
     .pipe(source('main.js'))
     .pipe($.buffer())
     .pipe(preprocess())
@@ -121,11 +121,11 @@ gulp.task('images', function () {
 gulp.task('fonts', function () {
   return $.bowerFiles()
     .pipe($.filter([
-            '**/*.eot',
-            '**/*.svg',
-            '**/*.ttf',
-            '**/*.woff'
-        ]))
+    '**/*.eot',
+    '**/*.svg',
+    '**/*.ttf',
+    '**/*.woff'
+  ]))
     .pipe($.flatten())
     .pipe(gulp.dest('dist/fonts'))
     .pipe($.size());
@@ -182,14 +182,15 @@ gulp.task('watch', ['connect', 'serve'], function () {
 
   // Watch for changes in `app` folder
   gulp.watch([
-        'app/*.html',
-        'dist/**/*.css',
-        'app/scripts/**/*.js',
-        'app/images/**/*'
+      'app/*.html',
+      'dist/**/*.css',
+      'app/scripts/**/*.js',
+      'app/images/**/*'
     ], function (event) {
-    return gulp.src(event.path)
+
+      return gulp.src(event.path)
       .pipe($.connect.reload());
-  });
+    });
 
   // Watch .scss files
   gulp.watch('app/styles/**/*.scss', ['styles']);
@@ -204,4 +205,16 @@ gulp.task('watch', ['connect', 'serve'], function () {
   gulp.watch('bower.json', ['wiredep']);
 
   gulp.watch(['app/*.js', 'app/*.html'], ['bookmarklet']);
+});
+
+// Deploy to gh-pages
+gulp.task('deploy', function () {
+  isDist = true;
+  gulp.start('default');
+  gulp.src('dist/**/*')
+    .pipe($.ghPages({
+      remoteUrl: 'git@github.com:jnv/fitbar.git',
+      cacheDir: '.cache'
+    }
+  ));
 });
