@@ -88,21 +88,27 @@ gulp.task('bookmarklet', function () {
 
 // HTML
 gulp.task('html', ['bookmarklet', 'styles', 'scripts'], function () {
-  // var jsFilter = $.filter('**/*.js');
-  // var cssFilter = $.filter('**/*.css');
+  if(isDist) {
+    gulp.start('useref');
+  }
+});
 
-  // return gulp.src('app/*.html')
-  //   .pipe($.useref.assets())
-  //   .pipe(jsFilter)
-  //   .pipe($.uglify())
-  //   .pipe(jsFilter.restore())
-  //   .pipe(cssFilter)
-  //   .pipe($.csso())
-  //   .pipe(cssFilter.restore())
-  //   .pipe($.useref.restore())
-  //   .pipe($.useref())
-  //   .pipe(gulp.dest('dist'))
-  //   .pipe($.size());
+gulp.task('useref', function() {
+  var jsFilter = $.filter('**/*.js');
+  var cssFilter = $.filter('**/*.css');
+
+  return gulp.src('app/*.html')
+    .pipe($.useref.assets())
+    .pipe(jsFilter)
+    .pipe($.if(isDist, $.uglify()))
+    .pipe(jsFilter.restore())
+    .pipe(cssFilter)
+    .pipe($.if(isDist, $.csso()))
+    .pipe(cssFilter.restore())
+    .pipe($.useref.restore())
+    .pipe($.useref())
+    .pipe(gulp.dest('dist'))
+    .pipe($.size());
 });
 
 // Images
