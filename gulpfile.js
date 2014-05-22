@@ -86,18 +86,15 @@ gulp.task('bookmarklet', function () {
     .pipe(gulp.dest('dist'));
 });
 
+
+
 // HTML
 gulp.task('html', ['bookmarklet', 'styles', 'scripts'], function () {
-  if(isDist) {
-    gulp.start('useref');
-  }
-});
-
-gulp.task('useref', function() {
   var jsFilter = $.filter('**/*.js');
   var cssFilter = $.filter('**/*.css');
 
-  return gulp.src('app/*.html')
+  var useref = function() {
+    return gulp.src('app/*.html')
     .pipe($.useref.assets())
     .pipe(jsFilter)
     .pipe($.if(isDist, $.uglify()))
@@ -109,7 +106,12 @@ gulp.task('useref', function() {
     .pipe($.useref())
     .pipe(gulp.dest('dist'))
     .pipe($.size());
+  };
+  if(isDist) {
+    return useref();
+  }
 });
+
 
 // Images
 gulp.task('images', function () {
@@ -213,10 +215,12 @@ gulp.task('watch', ['connect', 'serve'], function () {
   gulp.watch(['app/*.js', 'app/*.html'], ['bookmarklet']);
 });
 
-// Deploy to gh-pages
-gulp.task('deploy', function () {
+gulp.task('setDist', function (){
   isDist = true;
-  gulp.start('default');
+});
+
+// Deploy to gh-pages
+gulp.task('deploy', ['setDist', 'default'], function () {
   gulp.src('dist/**/*')
     .pipe($.ghPages({
       remoteUrl: 'git@github.com:jnv/fitbar.git',
