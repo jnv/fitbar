@@ -135,14 +135,15 @@
     <button type="button" id="js-addnotification">Add notification</button>
     <button type="button" id="js-resetnotification">Reset notification</button>
     </div>
+    <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endbower -->
+    <!-- endbuild -->
     <script>
     $(function(){
       'use strict';
-
 
       var notifCnt = 0;
       function addNotification() {
