@@ -148,7 +148,7 @@
               <span class="name">Frantisek Omacka</span>
               <span class="role">Sponzor, Teacher</span>
               </div>
-              <a href="#" class="userbar-logout pull-right">Odhlásit</a>
+              <a href="#" class="userbar-logout pull-right" data-logout>Odhlásit</a>
             </li>
           </ul>
         </li>
@@ -194,7 +194,7 @@
 
       $('.js-logged-in').hide();
       // $('.js-logged-in,.js-logged-out').toggle();
-      $('[data-login]').click(function(e){
+      $('[data-login],[data-logout]').click(function(e){
         e.preventDefault();
         $('.js-logged-in,.js-logged-out').toggle();
       });
