@@ -153,7 +153,7 @@ gulp.task('build', ['html', 'images', 'fonts']);
 gulp.task('default', ['watch']);
 
 gulp.task('buildc', ['clean'], function () {
-  gulp.start('build');
+  return gulp.start('build');
 });
 
 // Connect
@@ -222,11 +222,12 @@ gulp.task('setDist', function (){
 });
 
 // Deploy to gh-pages
-gulp.task('deploy', ['setDist', 'buildc'], function () {
+gulp.task('deploy', ['setDist', 'build'], function () {
   gulp.src('dist/**/*')
     .pipe($.ghPages({
       remoteUrl: 'git@github.com:jnv/fitbar.git',
-      cacheDir: '.cache'
+      cacheDir: '.cache',
+      push: true
     }
   ));
 });
