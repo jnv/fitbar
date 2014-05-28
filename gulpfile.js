@@ -150,7 +150,9 @@ gulp.task('clean', function () {
 gulp.task('build', ['html', 'images', 'fonts']);
 
 // Default task
-gulp.task('default', ['clean'], function () {
+gulp.task('default', ['watch']);
+
+gulp.task('buildc', ['clean'], function () {
   gulp.start('build');
 });
 
@@ -220,7 +222,7 @@ gulp.task('setDist', function (){
 });
 
 // Deploy to gh-pages
-gulp.task('deploy', ['setDist', 'default'], function () {
+gulp.task('deploy', ['setDist', 'buildc'], function () {
   gulp.src('dist/**/*')
     .pipe($.ghPages({
       remoteUrl: 'git@github.com:jnv/fitbar.git',
