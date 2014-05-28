@@ -1,0 +1,38 @@
+@import "fontawesome/scss/font-awesome";
+
+// ico-#{key} -> fa-#[value]
+// ie. ico-fit -> fa-home
+$icons-map: (
+  fit: home,
+  edux: book,
+  kos: mortar-board,
+  ssp: briefcase,//empire,
+  imap: envelope,
+  progtest: heart, //certificate
+  timetable: calendar,
+  gitlab: git,
+  forum: comments,
+  project: paw, //dashboard
+  teambox: archive,
+  usermap: users,
+  bpm: flag-checkered,
+);
+
+// Site icons
+.navbar-nav {
+
+  .site-icon:before {
+    @extend .fa;
+    //@extend .fa-circle-o;
+    padding-right: 5px;
+  }
+
+  @each $ico, $fa in $icons-map {
+
+    .ico-#{$ico}:before {
+      @extend .fa-#{$fa};
+    }
+
+  }
+
+}
