@@ -16,19 +16,21 @@ $icons-map: (
   teambox: archive,
   usermap: users,
   bpm: flag-checkered,
+  login: sign-in,
+  logout: sign-out,
 );
 
 // Site icons
-.navbar-nav {
-
-  .site-icon:before {
+.fitbar {
+  // XXX: this could be handled in attribute selector
+  // like [class^=ico-], but that's brittle and less performant
+  .ico:before {
     @extend .fa;
     //@extend .fa-circle-o;
     padding-right: 5px;
   }
 
   @each $ico, $fa in $icons-map {
-
     .ico-#{$ico}:before {
       @extend .fa-#{$fa};
     }
