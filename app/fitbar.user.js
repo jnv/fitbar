@@ -7,7 +7,7 @@
 // @homepage    http://jnv.github.io/fitbar/
 // @include     http*://*.cvut.cz/*
 // @updateURL   https://jnv.github.io/fitbar/fitbar.user.js
-// @run-at document-end
+// @run-at window-load
 // @id fitbar-jnv
 // ==/UserScript==
 
