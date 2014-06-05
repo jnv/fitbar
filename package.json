@@ -30,6 +30,7 @@
     "gulp-useref": "~0.4.3",
     "gulp-util": "~2.2.9",
     "gulp-wrap": "^0.3.0",
+    "lazypipe": "^0.2.1",
     "open": "~0.0.4",
     "vinyl-map": "^1.0.1",
     "vinyl-source-stream": "^0.1.1",
