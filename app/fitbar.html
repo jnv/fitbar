@@ -140,12 +140,18 @@
   </div>
 </nav>
 
+<!-- @ifdef INCLUDE_VENDOR -->
+<!--
+<!-- @endif -->
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
+<!-- @ifdef INCLUDE_VENDOR -->
+-->
+<!-- @endif -->
 <!-- @ifdef INCLUDE_VENDOR -->
 <script src="<!-- @echo BASE_URL -->/scripts/vendor.js"></script>
 <!-- @endif -->
