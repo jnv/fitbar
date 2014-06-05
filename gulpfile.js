@@ -49,6 +49,8 @@ gulp.task('styles', function () {
       image: 'app/images',
       import_path: ['app/styles/vendors', 'app/bower_components'],
       sourcemap: !isDist,
+      comments: !isDist,
+      style: isDist ? 'compressed' : 'expanded',
     }).on('error', handleError)
     );
     // .pipe(gulp.dest('dist/styles'));
@@ -56,11 +58,12 @@ gulp.task('styles', function () {
 
 // Scripts
 gulp.task('scripts', function () {
-  var browserify = require('browserify');
-  var source = require('vinyl-source-stream');
+  // var browserify = require('browserify');
+  // var source = require('vinyl-source-stream');
   // return gulp.src('app/scripts/**/*.js')
-  // .pipe($.jshint('.jshintrc'))
-  // .pipe($.jshint.reporter('default'))
+    // .pipe($.jshint('.jshintrc'))
+    // .pipe($.jshint.reporter('default'))
+    /*
   return browserify({
       entries: './app/scripts/main.js'
     }).bundle({debug: envConfig().DEBUG})
@@ -69,6 +72,11 @@ gulp.task('scripts', function () {
     .pipe($.buffer())
     .pipe(preprocess())
     // .pipe($.stream())
+    .pipe(gulp.dest('dist/scripts'))
+    .pipe($.size());
+    */
+
+  return gulp.src('app/scripts/**/*.js')
     .pipe(gulp.dest('dist/scripts'))
     .pipe($.size());
 });
