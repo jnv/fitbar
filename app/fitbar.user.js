@@ -44,7 +44,7 @@
 
   for (var n = 0; n < scripts.length; n++) {
     var script = scripts[n];
-    if(script.src === "") {
+    if(script.src === '') {
       inline.push(script.innerHTML);
     }
     else {
@@ -59,29 +59,28 @@
     };
   };
   var nextSrc = srcIter(srcs);
-
+  /*
   var evalScripts = function(contents) {
     contents.forEach(function(content){
       var el = document.createElement('script');
       el.text = content;
+      el.type = 'text/javascript';
       document.body.appendChild(el);
     });
-  };
+  };*/
 
   var loadScript = function(src) {
     if(!src) {
-      console.log('eval');
-      evalScripts(inline);
+      // evalScripts(inline);
       return;
     }
     console.log('loading', src);
     var el = document.createElement('script');
     el.type = 'text/javascript';
-    el.onload = loadScript(nextSrc());
+    el.onload = function() { loadScript(nextSrc()); };
     el.src = src;
     document.body.appendChild(el);
   };
   loadScript(nextSrc());
-
-
+  // end eval
 })(document);
