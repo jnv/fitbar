@@ -6,6 +6,7 @@ var wiredep = require('wiredep').stream;
 var map = require('vinyl-map');
 var config = require('./config.json');
 var args   = require('yargs').argv;
+var lazypipe = require('lazypipe');
 // var gutil = require('gulp-util');
 
 // Load plugins
@@ -47,9 +48,10 @@ gulp.task('styles', function () {
       css: 'dist/styles',
       image: 'app/images',
       import_path: ['app/styles/vendors', 'app/bower_components'],
+      sourcemap: !isDist,
     }).on('error', handleError)
-    )
-    .pipe(gulp.dest('dist/'));
+    );
+    // .pipe(gulp.dest('dist/styles'));
 });
 
 // Scripts
@@ -67,49 +69,47 @@ gulp.task('scripts', function () {
     .pipe($.buffer())
     .pipe(preprocess())
     // .pipe($.stream())
-    .pipe(gulp.dest('dist/'))
+    .pipe(gulp.dest('dist/scripts'))
     .pipe($.size());
 });
 
-gulp.task('bookmarklet', function () {
-  var bookmarkletify = require('bookmarkletify');
-  var bookmarklet = map(function (code, filename) {
+// Primary userscript
+// Takes generated template and puts it into a userscript
+gulp.task('userscript', ['html'], function () {
+  var stringify = map(function (code) {
     code = code.toString();
-    return bookmarkletify(code);
+    return JSON.stringify(code);
   });
 
-  return gulp.src('app/bookmarklet.js')
-    .pipe(preprocess())
-    .pipe(bookmarklet)
-    .pipe($.wrap({ src: 'app/index.html'}))
-    .pipe($.concat('index.html'))
+  return gulp.src('dist/fitbar.html')
+    // .pipe(preprocess())
+    .pipe(stringify)
+    .pipe($.wrap({ src: 'app/fitbar.user.js'}))
+    .pipe($.concat('fitbar.user.js'))
     .pipe(gulp.dest('dist'));
 });
 
-
-
 // HTML
-gulp.task('html', ['bookmarklet', 'styles', 'scripts'], function () {
+gulp.task('html', ['styles', 'scripts'], function () {
   var jsFilter = $.filter('**/*.js');
   var cssFilter = $.filter('**/*.css');
 
-  var useref = function() {
-    return gulp.src('app/*.html')
-    .pipe($.useref.assets())
-    .pipe(jsFilter)
-    .pipe($.if(isDist, $.uglify()))
-    .pipe(jsFilter.restore())
-    .pipe(cssFilter)
-    .pipe($.if(isDist, $.csso()))
-    .pipe(cssFilter.restore())
-    .pipe($.useref.restore())
-    .pipe($.useref())
+  var useref = lazypipe()
+    .pipe($.useref.assets)
+    .pipe(function(){ return jsFilter;} )
+    .pipe($.uglify)
+    .pipe(jsFilter.restore)
+    .pipe(function(){ return cssFilter;})
+    .pipe($.csso)
+    .pipe(cssFilter.restore)
+    .pipe($.useref.restore)
+    .pipe($.useref);
+
+  return gulp.src('app/*.html')
+    .pipe(preprocess())
+    .pipe($.if(isDist, useref()))
     .pipe(gulp.dest('dist'))
     .pipe($.size());
-  };
-  if(isDist) {
-    return useref();
-  }
 });
 
 
@@ -214,7 +214,7 @@ gulp.task('watch', ['connect', 'serve'], function () {
   // Watch bower files
   gulp.watch('bower.json', ['wiredep']);
 
-  gulp.watch(['app/*.js', 'app/*.html'], ['bookmarklet']);
+  gulp.watch(['app/*.user.js', 'app/fitbar.html'], ['userscript']);
 });
 
 gulp.task('setDist', function (){
