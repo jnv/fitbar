@@ -23,7 +23,7 @@ $(function(){
 
   window.setTimeout(function(){
     addNotification();
-  }, '2567');
+  }, '1000');
 
 
   $('.js-logged-in').hide();
@@ -32,4 +32,6 @@ $(function(){
     e.preventDefault();
     $('.js-logged-in,.js-logged-out').toggle();
   });
+
+  $('.notifications-indicator').on('click', resetNotification);
 });
