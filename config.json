@@ -5,6 +5,7 @@
   },
   "dist" : {
     "BASE_URL" : "https//jnv.github.io/fitbar",
-    "DEBUG": false
+    "DEBUG": false,
+    "INCLUDE_VENDOR": true
   }
 }
