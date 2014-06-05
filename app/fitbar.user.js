@@ -27,12 +27,61 @@
     return link;
   };
 
-
   var bar = document.createElement('div');
   bar.id = 'fitbar';
   bar.innerHTML = CONTENTS;
   setBarPosition(bar, getElementExpander(document.body));
   document.body.insertBefore(bar, document.body.firstElementChild);
-  // document.head.appendChild(generateStylesheetLink('/* @echo BASE_URL *//main.css'));
+
+
+  // evaluate all inserted scripts
+  // REMEMBER: this is prototype only!
+  //   if you're reading this in production, something went very, very wrong!
+
+  var scripts = bar.getElementsByTagName('script');
+  var inline = [], srcs = [];
+
+
+  for (var n = 0; n < scripts.length; n++) {
+    var script = scripts[n];
+    if(script.src === "") {
+      inline.push(script.innerHTML);
+    }
+    else {
+      srcs.push(script.src);
+    }
+  }
+
+  var srcIter = function(sources) {
+    var srcs = sources.slice(0);
+    return function() {
+      return srcs.shift();
+    };
+  };
+  var nextSrc = srcIter(srcs);
+
+  var evalScripts = function(contents) {
+    contents.forEach(function(content){
+      var el = document.createElement('script');
+      el.text = content;
+      document.body.appendChild(el);
+    });
+  };
+
+  var loadScript = function(src) {
+    if(!src) {
+      console.log('eval');
+      evalScripts(inline);
+      return;
+    }
+    console.log('loading', src);
+    var el = document.createElement('script');
+    el.type = 'text/javascript';
+    el.onload = loadScript(nextSrc());
+    el.src = src;
+    document.body.appendChild(el);
+  };
+  loadScript(nextSrc());
+
 
 })(document);
