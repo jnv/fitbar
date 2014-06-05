@@ -1,3 +1,16 @@
+// ==UserScript==
+// @name        Fitbar
+// @namespace   http://jnv.github.io/fitbar/
+// @description Injects global navigation bar
+// @version     2015.6.5
+// @author      jnv
+// @homepage    http://jnv.github.io/fitbar/
+// @include     http*://*.cvut.cz/*
+// @updateURL   https://jnv.github.io/fitbar/fitbar.user.js
+// @run-at document-end
+// @id fitbar-jnv
+// ==/UserScript==
+
 (function(document){
   'use strict';
 
