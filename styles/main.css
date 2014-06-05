@@ -5236,7 +5236,7 @@ body
 body > header, body > footer, .body { display: table-row; }
 body > footer { height: 1px; }  */
 /* line 2, ../../app/styles/components/_fitbar.scss */
-#fitbar * {
+#fitbar {
   all: unset;
 }
 
