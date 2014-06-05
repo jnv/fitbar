@@ -166,7 +166,7 @@ gulp.task('connect', function () {
 });
 
 // Open
-gulp.task('serve', ['connect', 'html'], function () {
+gulp.task('serve', ['connect', 'html', 'userscript'], function () {
   //open('http://localhost:9000');
 });
 
