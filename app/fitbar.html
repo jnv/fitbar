@@ -8,7 +8,7 @@
 }
 </style>
 <style scoped>
-@import url('<!-- @echo BASE_URL -->/main.css');
+@import url('<!-- @echo BASE_URL -->/styles/main.css');
 </style>
 <nav class="navbar navbar-inverse fitbar" role="navigation">
   <div class="container">
@@ -146,36 +146,7 @@
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
-<script>
-$(function(){
-  'use strict';
-
-  var notifCnt = 0;
-  function addNotification() {
-    notifCnt++;
-    setNotficationIndicator();
-  };
-  function resetNotification() {
-    notifCnt = 0;
-    setNotficationIndicator();
-  }
-
-  function setNotficationIndicator() {
-    var $ind = $('.notifications-indicator');
-
-    $ind.text(notifCnt);
-    $ind.toggleClass('active', (notifCnt > 0));
-  }
-
-  $('#js-addnotification').click(addNotification);
-  $('#js-resetnotification').click(resetNotification);
-
-
-  $('.js-logged-in').hide();
-  // $('.js-logged-in,.js-logged-out').toggle();
-  $('[data-login],[data-logout]').click(function(e){
-    e.preventDefault();
-    $('.js-logged-in,.js-logged-out').toggle();
-  });
-});
-</script>
+<!-- @ifdef INCLUDE_VENDOR -->
+<script src="<!-- @echo BASE_URL -->/scripts/vendor.js"></script>
+<!-- @endif -->
+<script src="<!-- @echo BASE_URL -->/scripts/demo.js"></script>
