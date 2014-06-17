@@ -65,7 +65,6 @@
   var scripts = bar.getElementsByTagName('script');
   var inline = [], srcs = [];
 
-
   for (var n = 0; n < scripts.length; n++) {
     var script = scripts[n];
     if(script.src === '') {
