@@ -9,3 +9,10 @@
   color: $text-color;
   background-color: $body-bg;
 }
+
+// Site-specific overrides
+
+// fit.cvut.cz & al.
+li {
+  all: unset;
+}
