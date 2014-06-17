@@ -2,7 +2,7 @@
 // @name        Fitbar
 // @namespace   http://jnv.github.io/fitbar/
 // @description Injects global navigation bar
-// @version     2015.6.5
+// @version     2015.6.17
 // @author      jnv
 // @homepage    http://jnv.github.io/fitbar/
 // @include     http*://*.cvut.cz/*
