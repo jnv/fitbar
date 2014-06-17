@@ -5249,6 +5249,11 @@ body > footer { height: 1px; }  */
   background-color: white;
 }
 
+/* line 16, ../../app/styles/components/_fitbar.scss */
+li {
+  all: unset;
+}
+
 /*!
  *  Font Awesome 4.1.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -7780,26 +7785,36 @@ body > footer { height: 1px; }  */
   border-right: 5px solid transparent;
 }
 
-/* line 18, ../../app/styles/components/_navbar.scss */
+/* line 19, ../../app/styles/components/_navbar.scss */
 .navbar-inverse {
   -webkit-box-shadow: rgba(0, 0, 0, 0.45) 1px 0 5px;
   box-shadow: rgba(0, 0, 0, 0.45) 1px 0 5px;
 }
 
 /* line 23, ../../app/styles/components/_navbar.scss */
+.fitbar {
+  border-radius: 0;
+}
+
+/* line 27, ../../app/styles/components/_navbar.scss */
+.fitbar .navbar-right:last-child {
+  margin-right: 0;
+}
+
+/* line 32, ../../app/styles/components/_navbar.scss */
 .navbar-nav > li > a,
 .dropdown-menu > li > a {
   font-weight: 600;
 }
 
-/* line 35, ../../app/styles/components/_navbar.scss */
+/* line 44, ../../app/styles/components/_navbar.scss */
 .navbar-nav > li > .dropdown-menu {
   margin-top: 10px;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
   color: #999999;
 }
-/* line 41, ../../app/styles/components/_navbar.scss */
+/* line 50, ../../app/styles/components/_navbar.scss */
 .navbar-nav > li > .dropdown-menu:before {
   position: absolute;
   display: block;
@@ -7811,14 +7826,14 @@ body > footer { height: 1px; }  */
   border-right: 8px solid transparent;
 }
 
-/* line 53, ../../app/styles/components/_navbar.scss */
+/* line 62, ../../app/styles/components/_navbar.scss */
 .navbar-nav > li > .userbar-menu:before,
 .navbar-nav > li > .notifications-menu:before {
   right: 0;
   margin-left: 0;
   margin-right: 17px;
 }
-/* line 62, ../../app/styles/components/_navbar.scss */
+/* line 71, ../../app/styles/components/_navbar.scss */
 .navbar-nav > li > .notifications-menu:before {
   margin-right: 10px;
 }

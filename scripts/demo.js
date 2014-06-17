@@ -1,6 +1,5 @@
 $(function(){
   'use strict';
-  console.log('ohai');
   var notifCnt = 0;
   function addNotification() {
     notifCnt++;
@@ -18,6 +17,14 @@ $(function(){
     $ind.toggleClass('active', (notifCnt > 0));
   }
 
+  function setActiveItem() {
+    $('#fitbar a.ico').each(function(){
+      if(this.hostname === window.location.hostname) {
+        $(this).closest('li').addClass('active');
+      }
+    });
+  }
+
   // $('#js-addnotification').click(addNotification);
   // $('#js-resetnotification').click(resetNotification);
 
@@ -25,6 +32,7 @@ $(function(){
     addNotification();
   }, '1000');
 
+  setActiveItem();
 
   $('.js-logged-in').hide();
   // $('.js-logged-in,.js-logged-out').toggle();
