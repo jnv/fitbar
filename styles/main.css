@@ -1,3 +1,8 @@
+/* line 1, ../../app/styles/_unset.scss */
+#fitbar li {
+  margin: 0;
+}
+
 /* =======================================================================*
  * Main website template .SCSS source styles.                             *
  *                                                                        *
@@ -5237,21 +5242,11 @@ body > header, body > footer, .body { display: table-row; }
 body > footer { height: 1px; }  */
 /* line 2, ../../app/styles/components/_fitbar.scss */
 #fitbar {
-  all: unset;
-}
-
-/* line 5, ../../app/styles/components/_fitbar.scss */
-#fitbar {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857;
   color: #424242;
   background-color: white;
-}
-
-/* line 16, ../../app/styles/components/_fitbar.scss */
-li {
-  all: unset;
 }
 
 /*!

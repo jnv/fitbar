@@ -46,6 +46,7 @@
   var bar = document.createElement('div');
   bar.id = 'fitbar';
   bar.innerHTML = CONTENTS;
+
   var bodyPadding = getElementExpander(document.body, 'padding'),
       bodyMargin = getElementExpander(document.body, 'margin');
   var calcBodyBox = {};
@@ -54,7 +55,7 @@
       calcBodyBox[prop] = [bodyPadding[prop], bodyMargin[prop]];
     }
   }
-  setBarPosition(bar, calcBodyBox);
+  setBarPosition(bar.querySelector('.fitbar'), calcBodyBox);
   document.body.insertBefore(bar, document.body.firstElementChild);
 
 
