@@ -16,20 +16,22 @@
 
   var CONTENTS = <%= contents %>;
 
-  var getElementExpander = function(el) {
+  var getElementExpander = function(el, box) {
     var styles = window.getComputedStyle(el);
-
+    if(!box) {
+      box = 'padding';
+    }
     return {
-      top: styles.paddingTop,
-      left: styles.paddingLeft,
-      right: styles.paddingRight
+      top: styles[box + 'Top'],
+      left: styles[box + 'Left'],
+      right: styles[box + 'Right']
     };
   };
 
   var setBarPosition = function(bar, dimensions) {
-    bar.style.marginTop = '-' + dimensions.top;
-    bar.style.marginLeft = '-' +  dimensions.left;
-    bar.style.paddingRight = 'calc(' + dimensions.right + ' * 2)';
+    bar.style.marginTop = 'calc(-(' + dimensions.top + '))';
+    bar.style.marginLeft = 'calc(-(' + dimensions.top + '))';
+    bar.style.paddingRight = 'calc( (' + dimensions.right + ') * 2)';
   };
 
   var generateStylesheetLink = function(url) {
@@ -43,7 +45,15 @@
   var bar = document.createElement('div');
   bar.id = 'fitbar';
   bar.innerHTML = CONTENTS;
-  setBarPosition(bar, getElementExpander(document.body));
+  var bodyPadding = getElementExpander(document.body, 'padding'),
+      bodyMargin = getElementExpander(document.body, 'margin');
+  var calcBodyBox = {};
+  for(var prop in bodyPadding) {
+    if(bodyPadding.hasOwnProperty(prop) && bodyMargin.hasOwnProperty(prop)){
+      calcBodyBox[prop] = bodyPadding[prop] + ' + ' + bodyMargin[prop];
+    }
+  }
+  setBarPosition(bar, calcBodyBox);
   document.body.insertBefore(bar, document.body.firstElementChild);
 
 
