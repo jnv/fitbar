@@ -6,6 +6,7 @@
 // @author      jnv
 // @homepage    http://jnv.github.io/fitbar/
 // @include     http*://*.cvut.cz/*
+// @exclude     http*://idp.fit.cvut.cz/*
 // @updateURL   https://jnv.github.io/fitbar/fitbar.user.js
 // @run-at window-load
 // @id fitbar-jnv
@@ -29,9 +30,9 @@
   };
 
   var setBarPosition = function(bar, dimensions) {
-    bar.style.marginTop = 'calc(-(' + dimensions.top + '))';
-    bar.style.marginLeft = 'calc(-(' + dimensions.top + '))';
-    bar.style.paddingRight = 'calc( (' + dimensions.right + ') * 2)';
+    bar.style.marginTop = 'calc(0px - ' + dimensions.top.join(' - ') + ')';
+    bar.style.marginLeft = 'calc(0px - ' + dimensions.left.join(' - ') + ')';
+    bar.style.paddingRight = 'calc(2 * ' + dimensions.right.join(' + ') + ' * 2)';
   };
 
   var generateStylesheetLink = function(url) {
@@ -50,7 +51,7 @@
   var calcBodyBox = {};
   for(var prop in bodyPadding) {
     if(bodyPadding.hasOwnProperty(prop) && bodyMargin.hasOwnProperty(prop)){
-      calcBodyBox[prop] = bodyPadding[prop] + ' + ' + bodyMargin[prop];
+      calcBodyBox[prop] = [bodyPadding[prop], bodyMargin[prop]];
     }
   }
   setBarPosition(bar, calcBodyBox);
