@@ -1487,7 +1487,7 @@ select[multiple].input-lg {
   color: white;
   text-decoration: none;
   outline: 0;
-  background-color: #428bca;
+  background-color: #f3ad21;
 }
 
 /* line 100, ../../app/styles/vendors/bootstrap/_dropdowns.scss */
@@ -5241,10 +5241,15 @@ body
 body > header, body > footer, .body { display: table-row; }
 body > footer { height: 1px; }  */
 /* line 2, ../../app/styles/components/_fitbar.scss */
-#fitbar {
+#fitbar,
+* {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857;
+}
+
+/* line 8, ../../app/styles/components/_fitbar.scss */
+#fitbar {
   color: #424242;
   background-color: white;
 }
@@ -7789,27 +7794,28 @@ body > footer { height: 1px; }  */
 /* line 23, ../../app/styles/components/_navbar.scss */
 .fitbar {
   border-radius: 0;
+  margin-bottom: 0;
 }
 
-/* line 27, ../../app/styles/components/_navbar.scss */
+/* line 28, ../../app/styles/components/_navbar.scss */
 .fitbar .navbar-right:last-child {
   margin-right: 0;
 }
 
-/* line 32, ../../app/styles/components/_navbar.scss */
+/* line 33, ../../app/styles/components/_navbar.scss */
 .navbar-nav > li > a,
 .dropdown-menu > li > a {
   font-weight: 600;
 }
 
-/* line 44, ../../app/styles/components/_navbar.scss */
+/* line 45, ../../app/styles/components/_navbar.scss */
 .navbar-nav > li > .dropdown-menu {
   margin-top: 10px;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
   color: #999999;
 }
-/* line 50, ../../app/styles/components/_navbar.scss */
+/* line 51, ../../app/styles/components/_navbar.scss */
 .navbar-nav > li > .dropdown-menu:before {
   position: absolute;
   display: block;
@@ -7821,14 +7827,14 @@ body > footer { height: 1px; }  */
   border-right: 8px solid transparent;
 }
 
-/* line 62, ../../app/styles/components/_navbar.scss */
+/* line 63, ../../app/styles/components/_navbar.scss */
 .navbar-nav > li > .userbar-menu:before,
 .navbar-nav > li > .notifications-menu:before {
   right: 0;
   margin-left: 0;
   margin-right: 17px;
 }
-/* line 71, ../../app/styles/components/_navbar.scss */
+/* line 72, ../../app/styles/components/_navbar.scss */
 .navbar-nav > li > .notifications-menu:before {
   margin-right: 10px;
 }

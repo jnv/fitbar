@@ -8,6 +8,7 @@
 // @include     http*://*.cvut.cz/*
 // @exclude     http*://idp.fit.cvut.cz/*
 // @updateURL   https://jnv.github.io/fitbar/fitbar.user.js
+// @noframes
 // @run-at window-load
 // @id fitbar-jnv
 // ==/UserScript==
@@ -32,7 +33,7 @@
   var setBarPosition = function(bar, dimensions) {
     bar.style.marginTop = 'calc(0px - ' + dimensions.top.join(' - ') + ')';
     bar.style.marginLeft = 'calc(0px - ' + dimensions.left.join(' - ') + ')';
-    bar.style.paddingRight = 'calc(2 * ' + dimensions.right.join(' + ') + ' * 2)';
+    bar.style.marginRight = 'calc(0px - ' + dimensions.right.join(' - ') + ')';
   };
 
   var generateStylesheetLink = function(url) {
