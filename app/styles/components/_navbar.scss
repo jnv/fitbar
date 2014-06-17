@@ -15,8 +15,13 @@
   }
 }
 
+
 .navbar-inverse {
   @include box-shadow( rgba( #000, .45 ) 1px 0 5px );
+}
+
+.fitbar .navbar-right:last-child {
+  margin-right: 0;
 }
 
 // TODO: this could be probably global to navbar-nav
