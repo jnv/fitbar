@@ -2,38 +2,29 @@
   "name": "fitbar",
   "version": "0.2.0",
   "description": "",
-  "homepage": "https://github.com/jnv/fitbar",
-  "maintainers": [],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/jnv/fitbar.git"
-  },
-  "main": "fitbar.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "gulp"
+    "serve": "atomify --server [ --path index.html --open ]"
   },
   "dependencies": {},
   "devDependencies": {
     "atomify": "^5.0.0",
-    "gulp": "*",
-    "gulp-complexity": "*",
-    "gulp-jshint": "*",
-    "gulp-karma": "*",
-    "gulp-rename": "*",
-    "gulp-replace": "*",
-    "gulp-uglify": "*",
-    "handlebars": "^1.3.0",
-    "hbsfy": "^1.3.2",
     "karma-chai": "*",
     "karma-coverage": "*",
     "karma-mocha": "*",
     "karma-phantomjs-launcher": "*",
     "karma-sinon": "*",
     "mocha": "*",
-    "resrcify": "^1.1.3",
     "sinon-chai": "*"
   },
-  "engines": {
-    "node": ">=0.10.0"
+  "atomify": {
+    "js": {
+      "entry": "src/index.js",
+      "alias": "/bundle.js"
+    },
+    "css": {
+      "entry": "src/index.css",
+      "alias": "/bundle.css"
+    }
   }
 }
