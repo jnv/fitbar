@@ -6,7 +6,9 @@
   "scripts": {
     "serve": "atomify --server [ --path index.html --open ]"
   },
-  "dependencies": {},
+  "dependencies": {
+    "mithril": "^0.1.22"
+  },
   "devDependencies": {
     "atomify": "^5.0.0",
     "karma-chai": "*",
