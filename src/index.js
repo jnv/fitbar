@@ -1,9 +1,4 @@
-/**
- * @file fitbar is micro-library.
- * Scaffolded with generator-microjs
- * @author Jan Vlnas <>
- */
+var m = require('mithril');
+var bar = require('./bar');
 
-function fitbar() {
-  // TODO: implement your micro framework or library.
-}
+m.module(document.body, bar);
