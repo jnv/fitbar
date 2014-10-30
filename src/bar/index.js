@@ -3,14 +3,24 @@ var m = require('mithril');
 var links = require('./links');
 
 //controller class
-function Controller() {
+function controller() {
+  controller.links = links;
 }
 
 //view class
-function View() {
+function view(ctrl) {
+  function link(data) {
+    return m('a.fitbar-Link', {href: data.url});
+  }
+
+  return m('.fitbar-Bar', [
+    ctrl.links.map(function(ldata){
+      return link(ldata);
+    })
+  ]);
 }
 
 module.exports = {
-  controller: Controller,
-  view: View
+  controller: controller,
+  view: view
 };
