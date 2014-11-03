@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "serve": "atomify --server [ --path index.html --open ]"
+    "start": "atomify --server [ --lr true --path index.html ]",
+    "build": "atomify -o dist/fitbar"
   },
   "dependencies": {
     "mithril": "^0.1.22"
@@ -20,13 +21,13 @@
     "sinon-chai": "*"
   },
   "atomify": {
-    "js": {
-      "entry": "src/index.js",
-      "alias": "/bundle.js"
-    },
-    "css": {
-      "entry": "src/index.css",
-      "alias": "/bundle.css"
-    }
+      "js": {
+          "entry": "src/index.js",
+          "alias": "/bundle.js"
+      },
+      "css": {
+          "entry": "src/index.css",
+          "alias": "/bundle.css"
+      }
   }
 }
