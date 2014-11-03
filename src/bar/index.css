@@ -1,0 +1,6 @@
+@document wrap(.fitbar-&) {
+  .Bar {
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+}

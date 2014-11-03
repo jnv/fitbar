@@ -1,0 +1,12 @@
+:root {
+  --color-bg: #424242;
+  --color-bg-hi: #292929;
+  --color-fg: #999;
+  --color-fg-hi: #fff;
+  --color-accent: #f3ad21;
+
+  /* "Open Sans" skipped for consistency */
+  --font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+@import './bar';
