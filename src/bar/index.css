@@ -1,6 +1,41 @@
+
+%default {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  line-height: 14px;
+  text-decoration: none;
+}
+
+:root {
+  --bar-height: ;
+  --bar-padding-v: 10px;
+}
+
 @document wrap(.fitbar-&) {
+
   .Bar {
-    background: var(--color-bg);
-    color: var(--color-fg);
+    inherit: %default;
+  }
+
+  .Link {
+    inherit: %default;
+    padding: var(--bar-padding-v) 15px;
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  .Link:hover,
+  .Link:active,
+  .Link:focus {
+    color: var(--color-fg-hi);
+  }
+
+  .Link.is-current {
+    color: var(--color-fg-inv);
+    background-color: var(--color-accent);
   }
 }
