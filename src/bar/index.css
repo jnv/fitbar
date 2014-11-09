@@ -34,6 +34,10 @@
     color: var(--color-fg-hi);
   }
 
+  .Link:active {
+    background-color: var(--color-bg-hi);
+  }
+
   .Link.is-current {
     color: var(--color-fg-inv);
     background-color: var(--color-accent);
