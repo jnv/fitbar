@@ -8,6 +8,7 @@
     "build": "atomify -o dist/fitbar"
   },
   "dependencies": {
+    "lodash-node": "^2.4.1",
     "mithril": "^0.1.22",
     "rework-inherit": "^0.2.3",
     "wrap-selectors": "^0.1.0"
