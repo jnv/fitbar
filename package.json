@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "curry": "^1.2.0",
+    "functional-pipeline": "^0.2.4",
     "mithril": "^0.1.22",
     "rework-inherit": "^0.2.3",
     "wrap-selectors": "^0.1.0"
