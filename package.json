@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "mithril": "^0.1.22",
+    "rework-inherit": "^0.2.3",
     "wrap-selectors": "^0.1.0"
   },
   "devDependencies": {
@@ -30,7 +31,12 @@
       "entry": "src/index.css",
       "alias": "/bundle.css",
       "plugins": [
-        ["wrap-selectors"]
+        [
+          "wrap-selectors"
+        ],
+        [
+          "rework-inherit"
+        ]
       ]
     }
   }
