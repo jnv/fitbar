@@ -1,6 +1,9 @@
 var m = require('mithril');
 var bar = require('./bar');
 var curry = require('curry');
+var pipe = require('functional-pipeline');
+
+console.log(pipe);
 
 function valToNum(val) {
   return +val.replace('px', '');
@@ -23,19 +26,17 @@ var zip = zipWith(function(a, b) { return [a, b]; });
 
 function outerSizes(el) {
 
-  var style = window.getComputedStyle(el);
-  var extractStyle = extract(style);
-
   var dirs = ['Left', 'Right', 'Top'];
+  var style = window.getComputedStyle(el);
 
   var sizesFor = function(prop) {
-    return dirs.map(add(prop)).map(extractStyle).map(valToNum);
+    var transform = pipe(add(prop), extract(style), valToNum);
+    return dirs.map(transform);
   };
 
-  var paddings = dirs.map(add('padding')).map(extractStyle).map(valToNum);
 
+  console.log(sizesFor('margin'));
   var sizes = zipWith(add, sizesFor('margin'), sizesFor('padding'));
-
   return zip(dirs, sizes).reduce(function(obj, vals){
     var key = vals[0],
         size = vals[1];
