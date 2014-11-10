@@ -21,7 +21,9 @@
     inherit: %default;
   }
 
-  .Link {
+  .Link,
+  .Link:link,
+  .Link:visited {
     inherit: %default;
     padding: var(--bar-padding-v) 15px;
     display: inline-block;
