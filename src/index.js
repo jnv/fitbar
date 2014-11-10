@@ -3,8 +3,6 @@ var bar = require('./bar');
 var curry = require('curry');
 var pipe = require('functional-pipeline');
 
-console.log(pipe);
-
 function valToNum(val) {
   return +val.replace('px', '');
 }
@@ -34,8 +32,6 @@ function outerSizes(el) {
     return dirs.map(transform);
   };
 
-
-  console.log(sizesFor('margin'));
   var sizes = zipWith(add, sizesFor('margin'), sizesFor('padding'));
   return zip(dirs, sizes).reduce(function(obj, vals){
     var key = vals[0],
