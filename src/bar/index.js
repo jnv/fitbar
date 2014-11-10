@@ -4,9 +4,9 @@ var m = require('mithril');
 function linksModel() {
   var links = require('./links');
 
-  var location = window.location.hostname;
+  var location = '//' + window.location.hostname;
 
-  for (var i = links.length - 1; i >= 0; i--) {
+  for (var i = 0; i < links.length; i++) {
     var l = links[i];
     if(~l.url.indexOf(location)) {
       l.current = true;
