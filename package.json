@@ -5,10 +5,12 @@
   "main": "src/index.js",
   "scripts": {
     "start": "atomify --server [ --lr true --path index.html ] -d",
-    "build": "atomify -o dist/fitbar"
+    "build": "atomify -o dist/fitbar",
+    "build-chrome": "atomify -o ext/chrome/src/inject"
   },
   "dependencies": {
     "curry": "^1.2.0",
+    "domready": "^1.0.7",
     "functional-pipeline": "git+https://github.com/jnv/functional-pipeline.git",
     "mithril": "^0.1.22",
     "rework-inherit": "^0.2.3",
