@@ -12,11 +12,13 @@
   "content_scripts": [
     {
       "matches": [
-        "*://bpm.cvut.cz/*",
         "*://kos.is.cvut.cz/*",
         "*://usermap.cvut.cz/*",
         "*://fit.cvut.cz/*",
         "*://*.fit.cvut.cz/*"
+      ],
+      "exclude_matches": [
+        "*://idp.fit.cvut.cz/*"
       ],
       "css": [
         "src/inject.css"
