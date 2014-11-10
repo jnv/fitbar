@@ -1,3 +1,4 @@
+'use strict';
 var m = require('mithril');
 var bar = require('./bar');
 var curry = require('curry');
@@ -50,7 +51,7 @@ root.className = 'fitbar-Root';
 m.module(root, bar);
 
 // once DOM is ready, elements can be appended
-document.addEventListener('DOMContentLoaded', function inject() {
+require('domready')(function inject() {
   // apply negative margins for root container
   var sizes = outerSizes(document.body);
 
