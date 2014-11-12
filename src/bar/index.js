@@ -47,9 +47,12 @@ function view(ctrl) {
 
   return m('.fitbar-Bar', [
     linksVisible.map(classModifier('visible', link)),
-    m('.fitbar-Dropdown', [
-      linksDropdown.map(classModifier('dropdown', link))
-    ])
+    m('div.fitbar-Dropdown', [
+      m('span.fitbar-Link', 'Více'),
+      m('.fitbar-Dropdown-contents', [
+        linksDropdown.map(classModifier('vertical', link))
+      ])
+    ]),
   ]);
 }
 
