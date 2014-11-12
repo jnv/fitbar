@@ -26,15 +26,21 @@ function controller() {
 
 //view class
 function view(ctrl) {
+  var chunk = 5;
+
   function link(data) {
     var current = data.current ? '.is-current' : '';
     return m('a.fitbar-Link' + current, {href: data.url, title: data.desc}, data.title);
   }
 
+  var linksVisible = ctrl.links.slice(0, chunk - 1);
+  var linksDropdown = ctrl.links.slice(chunk);
+
   return m('.fitbar-Bar', [
-    ctrl.links.map(function(ldata){
-      return link(ldata);
-    })
+    linksVisible.map(link),
+    m('.fitbar-Dropdown', [
+      linksDropdown.map(link)
+    ])
   ]);
 }
 
