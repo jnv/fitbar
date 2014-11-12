@@ -28,18 +28,27 @@ function controller() {
 function view(ctrl) {
   var chunk = 5;
 
-  function link(data) {
+
+  function classModifier(classMod, cb) {
+    return function(data) {
+      return cb(data, classMod);
+    };
+  }
+
+  function link(data, classMod) {
+    var baseClass = '.fitbar-Link';
     var current = data.current ? '.is-current' : '';
-    return m('a.fitbar-Link' + current, {href: data.url, title: data.desc}, data.title);
+    var mod = classMod ? baseClass + '--' + classMod : '';
+    return m('a' + baseClass + mod + current, {href: data.url, title: data.desc}, data.title);
   }
 
   var linksVisible = ctrl.links.slice(0, chunk - 1);
   var linksDropdown = ctrl.links.slice(chunk);
 
   return m('.fitbar-Bar', [
-    linksVisible.map(link),
+    linksVisible.map(classModifier('visible', link)),
     m('.fitbar-Dropdown', [
-      linksDropdown.map(link)
+      linksDropdown.map(classModifier('dropdown', link))
     ])
   ]);
 }
