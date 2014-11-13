@@ -50,6 +50,15 @@ root.className = 'fitbar-Root';
 // render bar into a root element
 m.module(root, bar);
 
+function prependRootToBody() {
+  document.body.insertBefore(root, document.body.firstElementChild);
+}
+
+
+
+// configuration of the observer:
+var mutationOptions = {childList: true, attributes: true};
+
 // once DOM is ready, elements can be appended
 require('domready')(function inject() {
   // apply negative margins for root container
@@ -60,7 +69,14 @@ require('domready')(function inject() {
     root.style['margin' + dir] = '-' + size + 'px';
   }
 
-  // append root element as a first element into body
+  // prepend root element as a first element into body
   // TODO: possibly defer it if there are some further additions to the body?
-  document.body.insertBefore(root, document.body.firstElementChild);
+  prependRootToBody();
+
+  // document.body.addEventListener('DOMNodeRemoved', function(e){ console.log(e); } );
+  window.setInterval(function() {
+    if(root.parentElement !== document.body) {
+      prependRootToBody();
+    }
+  }, 500);
 });
