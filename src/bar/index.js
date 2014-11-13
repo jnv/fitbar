@@ -1,5 +1,6 @@
 'use strict';
 var m = require('mithril');
+var dropdown = require('../dropdown');
 
 function linksModel() {
   var links = require('./links');
@@ -47,12 +48,7 @@ function view(ctrl) {
 
   return m('.fitbar-Bar', [
     linksVisible.map(classModifier('visible', link)),
-    m('div.fitbar-Dropdown', [
-      m('span.fitbar-Link', 'Více'),
-      m('.fitbar-Dropdown-contents', [
-        linksDropdown.map(classModifier('vertical', link))
-      ])
-    ]),
+    dropdown({},linksDropdown.map(classModifier('vertical', link))),
   ]);
 }
 

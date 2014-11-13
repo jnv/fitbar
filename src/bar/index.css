@@ -51,19 +51,3 @@
     background-color: var(--color-accent);
   }
 }
-
-@document wrap(.fitbar-&) {
-  .Dropdown {
-    display: inline-block;
-    position: relative;
-  }
-  .Dropdown-contents {
-    display: none;
-    position: absolute;
-    z-index: 999999;
-  }
-
-  .Dropdown:hover .fitbar-Dropdown-contents {
-    display: block;
-  }
-}
