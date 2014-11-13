@@ -1,0 +1,15 @@
+@document wrap(.fitbar-&) {
+  .Dropdown {
+    display: inline-block;
+    position: relative;
+  }
+  .Dropdown-contents {
+    display: none;
+    position: absolute;
+    z-index: 999999;
+  }
+
+  .Dropdown-contents.is-open {
+    display: block;
+  }
+}
