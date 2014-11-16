@@ -22,13 +22,16 @@ function linksModel() {
 
 //controller class
 function controller() {
-  this.links = linksModel();
+  this.linksDropdown = dropdown();
+
+  var links = linksModel();
+  var chunk = 5;
+  this.linksExpanded = links.slice(0, chunk - 1);
+  this.linksHidden = links.slice(chunk);
 }
 
 //view class
 function view(ctrl) {
-  var chunk = 5;
-
 
   function classModifier(classMod, cb) {
     return function(data) {
@@ -43,12 +46,9 @@ function view(ctrl) {
     return m('a' + baseClass + mod + current, {href: data.url, title: data.desc}, data.title);
   }
 
-  var linksVisible = ctrl.links.slice(0, chunk - 1);
-  var linksDropdown = ctrl.links.slice(chunk);
-
   return m('.fitbar-Bar', [
-    linksVisible.map(classModifier('visible', link)),
-    dropdown({},linksDropdown.map(classModifier('vertical', link))),
+    ctrl.linksExpanded.map(classModifier('visible', link)),
+    ctrl.linksDropdown.view(ctrl.linksHidden.map(classModifier('vertical', link))),
   ]);
 }
 
