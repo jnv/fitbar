@@ -1,7 +1,7 @@
 'use strict';
 var m = require('mithril');
 
-function dropdown(props, contents) {
+function dropdown(options) {
 
   var isOpen = m.prop(false);
 
@@ -12,28 +12,26 @@ function dropdown(props, contents) {
   function close() {
     isOpen(false);
   }
-  function toggler(cb) {
-    return function() {
-      console.log(cb());
-      cb(!cb());
-    };
+  function toggle() {
+    isOpen(!isOpen());
   }
+
   function openClass() {
     return isOpen() ? ' is-open' : ' is-closed';
   }
 
-  var vm = {
-    isOpen: m.prop(false)
-  };
 
-  function view(vm) {
+  function view(contents) {
     return m(wrapper, [
-      m(targetSig, {onclick: toggler(vm.isOpen)}, 'Více'),
+      m(targetSig, {onclick: toggle}, 'Více'),
       m(contentWrapper, {class: openClass()}, contents)
     ]);
   }
 
-  return view(vm);
+  return {
+    toggle: toggle,
+    view: view
+  };
 }
 
 module.exports = dropdown;
