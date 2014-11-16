@@ -1,8 +1,12 @@
 @document wrap(.fitbar-&) {
   .Dropdown {
     display: inline-block;
+  }
+
+  .Dropdown-wrapper {
     position: relative;
   }
+
   .Dropdown-contents {
     display: none;
     position: absolute;
@@ -11,5 +15,15 @@
 
   .Dropdown-contents.is-open {
     display: block;
+  }
+
+  .Dropdown-overlay {
+    position: absolute;
+    z-index: 999998;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: transparent !important;
   }
 }
