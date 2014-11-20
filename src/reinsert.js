@@ -17,7 +17,7 @@ module.exports = function(toObserve, onAddition) {
   // create an observer instance
   var observer = new MutationObserver(function(mutations) {
     var lastAdded = u.last(mutations.map(addedBody));
-    if(lastAdded) {
+    if (lastAdded) {
       onAddition(lastAdded);
     }
   });

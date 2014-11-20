@@ -27,7 +27,7 @@ module.exports = {
     return null;
   },
   filter: curry(function(cb, collection) {
-    if(collection) {
+    if (collection) {
       return arrFilter.call(collection, cb);
     }
     return [];
