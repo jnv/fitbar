@@ -42,7 +42,7 @@ function view(ctrl) {
   function link(data, classMod) {
     var baseClass = '.fitbar-Link';
     var current = data.current ? '.is-current' : '';
-    var mod = classMod ? baseClass + '--' + classMod : '';
+    var mod = classMod ? (baseClass + '--' + classMod) : '';
     return m('a' + baseClass + mod + current, {href: data.url, title: data.desc}, data.title);
   }
 
