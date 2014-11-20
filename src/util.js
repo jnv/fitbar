@@ -21,7 +21,10 @@ module.exports = {
   zipWith: zipWith,
   zip: zip,
   last: function(a) {
-    return a[a.length - 1];
+    if(a && a.length > 0) {
+      return a[a.length - 1];
+    }
+    return null;
   },
   filter: curry(function(cb, collection) {
     if(collection) {

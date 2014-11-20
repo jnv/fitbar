@@ -6,17 +6,21 @@ var filterBody = function(el) {
   return el && el.nodeName === 'BODY';
 };
 
-var addedBody = pipe(u.extractValue('addedNodes'), u.filter(filterBody));
-
-// create an observer instance
-var observer = new MutationObserver(function(mutations) {
-  var lastAdded = u.last(mutations.map(addedBody));
-});
-
+var addedBody = pipe(u.extractValue('addedNodes'), u.filter(filterBody), u.last);
 
 // configuration of the observer:
-var mutationOptions = {childList: true, attributes: true};
+var mutationOptions = {childList: true};
 
 
 // pass in the target node, as well as the observer options
-observer.observe(document.documentElement, mutationOptions);
+module.exports = function(toObserve, onAddition) {
+  // create an observer instance
+  var observer = new MutationObserver(function(mutations) {
+    var lastAdded = u.last(mutations.map(addedBody));
+    if(lastAdded) {
+      onAddition(lastAdded);
+    }
+  });
+
+  observer.observe(toObserve, mutationOptions);
+};

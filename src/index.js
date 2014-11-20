@@ -55,6 +55,8 @@ require('domready')(function inject() {
   // TODO: possibly defer it if there are some further additions to the body?
   prependRoot(document.body);
 
+  reinsert(document.documentElement, prependRoot);
+
   // document.body.addEventListener('DOMNodeRemoved', function(e){ console.log(e); } );
   // window.setInterval(function() {
   //   if(root.parentElement !== document.body) {
