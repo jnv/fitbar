@@ -1,27 +1,13 @@
 'use strict';
 var m = require('mithril');
 var bar = require('./bar');
-var curry = require('curry');
 var pipe = require('functional-pipeline');
+var u = require('./util');
+var reinsert = require('./reinsert');
 
 function valToNum(val) {
   return +val.replace('px', '');
 }
-
-var add = curry(function(a, b) {
-  return a + b;
-});
-
-var extract = curry(function(from, prop) {
-  return from[prop];
-});
-
-
-var zipWith = curry(function(fn, a, b){
-    return a.map(function(val, i){ return fn(val, b[i]); });
-});
-
-var zip = zipWith(function(a, b) { return [a, b]; });
 
 function outerSizes(el) {
 
@@ -29,12 +15,12 @@ function outerSizes(el) {
   var style = window.getComputedStyle(el);
 
   var sizesFor = function(prop) {
-    var transform = pipe(add(prop), extract(style), valToNum);
+    var transform = pipe(u.add(prop), u.extractFrom(style), valToNum);
     return dirs.map(transform);
   };
 
-  var sizes = zipWith(add, sizesFor('margin'), sizesFor('padding'));
-  return zip(dirs, sizes).reduce(function(obj, vals){
+  var sizes = u.zipWith(u.add, sizesFor('margin'), sizesFor('padding'));
+  return u.zip(dirs, sizes).reduce(function(obj, vals){
     var key = vals[0],
         size = vals[1];
     obj[key] = size;
@@ -50,14 +36,10 @@ root.className = 'fitbar-Root';
 // render bar into a root element
 m.module(root, bar);
 
-function prependRootToBody() {
-  document.body.insertBefore(root, document.body.firstElementChild);
+function prependRoot(body) {
+  body.insertBefore(root, body.firstElementChild);
 }
 
-
-
-// configuration of the observer:
-var mutationOptions = {childList: true, attributes: true};
 
 // once DOM is ready, elements can be appended
 require('domready')(function inject() {
@@ -71,12 +53,13 @@ require('domready')(function inject() {
 
   // prepend root element as a first element into body
   // TODO: possibly defer it if there are some further additions to the body?
-  prependRootToBody();
+  prependRoot(document.body);
 
   // document.body.addEventListener('DOMNodeRemoved', function(e){ console.log(e); } );
-  window.setInterval(function() {
-    if(root.parentElement !== document.body) {
-      prependRootToBody();
-    }
-  }, 500);
+  // window.setInterval(function() {
+  //   if(root.parentElement !== document.body) {
+  //     prependRoot(document.body);
+  //   }
+  // }, 500);
+
 });
