@@ -25,6 +25,7 @@
     "karma-mocha": "*",
     "karma-phantomjs-launcher": "*",
     "karma-sinon": "*",
+    "merge": "^1.2.0",
     "mocha": "*",
     "sinon-chai": "*"
   },

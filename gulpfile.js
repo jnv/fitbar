@@ -6,20 +6,15 @@
  */
 'use strict';
 
-var gulp = require('gulp'),
-    jshint = require('gulp-jshint'),
-    complexity = require('gulp-complexity'),
-    uglify = require('gulp-uglify'),
-    rename = require('gulp-rename'),
-    replace = require('gulp-replace'),
-    karma = require('gulp-karma'),
-    fs = require('fs'),
-    source = 'fitbar.js',
+var gulp = require('gulp');
+var source = 'fitbar.js',
     sourceMin = 'fitbar.min.js',
     specs = 'test/spec/*.spec.js',
     karmaConf = 'test/karma.conf';
+var $ = require('gulp-load-plugins')();
 var atomify = require('atomify');
-
+var merge = require('merge');
+/*
 gulp.task('lint', function () {
   return gulp.src([source, specs])
     .pipe(jshint())
@@ -49,7 +44,6 @@ gulp.task('min', function () {
     .pipe(uglify({
       outSourceMap: true
     }))
-    .pipe(replace(/(.*)/, umdWrapper))
     .pipe(gulp.dest('.'));
 });
 
@@ -61,8 +55,8 @@ gulp.task('test-min', ['min'], function () {
       reporters: ['dots']
     }));
 });
-
-gulp.task('default', ['lint', 'gpa', 'test', 'test-min']);
+*/
+// gulp.task('default', ['lint', 'gpa', 'test', 'test-min']);
 
 var jsConfig = {
   entry: 'src/index.js',
@@ -82,36 +76,37 @@ var serverConfig = {
   sync: true
 };
 
-gulp.task('ext-chrome', function() {
+function atomifyConfig(modifier) {
+  var options = {js: jsConfig, css: cssConfig};
+  modifier = modifier || {};
+  return merge(options, modifier);
+}
 
+function atomifyBuild(optsMod, callback) {
+  var options = atomifyConfig(optsMod);
+  var cbCount = 0,
+      cbExpected = 2;
+
+  atomify(options, function (err) {
+    cbCount++;
+
+    if (!!err) {
+      return callback(err);
+    }
+    if(cbCount === cbExpected) {
+      callback();
+    }
+  });
+}
+
+gulp.task('ext-chrome', function(cb) {
+  atomifyBuild({output: 'ext/chrome/src/inject'}, cb);
 });
 
 gulp.task('server', function() {
-  atomify.server(options);
-
+  atomify.server(atomifyConfig({server: serverConfig}));
 });
 
-gulp.task('dist', function() {
-
-});
-
-gulp.task('default', function () {
-  var options = {
-    server: {
-      path: "index.html",
-      open: true
-    },
-    js: {
-      entry: "src/app.js",
-      alias: "/bundle.js"
-    },
-    css : {
-      entry: "src/app.css",
-      alias: "/bundle.css"
-    }
-  };
-  atomify(options, function (err, src) {
-    console.log('Atomify Build Done!');
-  });
-  atomify.server(options);
+gulp.task('dist', function(cb) {
+  atomifyBuild({output: 'dist/fitbar'}, cb);
 });
