@@ -4,9 +4,6 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "atomify --server [ --lr true --path index.html ] -d",
-    "build": "atomify -o dist/fitbar",
-    "build-chrome": "atomify -o ext/chrome/src/inject"
   },
   "dependencies": {
     "curry": "^1.2.0",
