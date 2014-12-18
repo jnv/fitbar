@@ -1,29 +1,27 @@
-@document wrap(.fitbar-&) {
-  .Dropdown {
-    display: inline-block;
-  }
+.Dropdown {
+  display: inline-block;
+}
 
-  .Dropdown-wrapper {
-    position: relative;
-  }
+.Dropdown-wrapper {
+  position: relative;
+}
 
-  .Dropdown-contents {
-    display: none;
-    position: absolute;
-    z-index: 999999;
-  }
+.Dropdown-contents {
+  display: none;
+  position: absolute;
+  z-index: 999999;
+}
 
-  .Dropdown-contents.is-open {
-    display: block;
-  }
+.Dropdown-contents.is-open {
+  display: block;
+}
 
-  .Dropdown-overlay {
-    position: absolute;
-    z-index: 999998;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: transparent !important;
-  }
+.Dropdown-overlay {
+  position: absolute;
+  z-index: 999998;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: transparent !important;
 }

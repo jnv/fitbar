@@ -15,39 +15,37 @@
   --bar-padding-v: 10px;
 }
 
-@document wrap(.fitbar-&) {
 
-  .Bar {
-    inherit: %default;
-  }
+.Bar {
+  inherit: %default;
+}
 
-  .Link,
-  .Link:link,
-  .Link:visited {
-    inherit: %default;
-    padding: var(--bar-padding-v) 15px;
-    display: inline-block;
-    font-weight: bold;
-    cursor: pointer;
-  }
+.Link,
+.Link:link,
+.Link:visited {
+  inherit: %default;
+  padding: var(--bar-padding-v) 15px;
+  display: inline-block;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-  .Link:hover,
-  .Link:active,
-  .Link:focus {
-    color: var(--color-fg-hi);
-  }
+.Link:hover,
+.Link:active,
+.Link:focus {
+  color: var(--color-fg-hi);
+}
 
-  .Link:active {
-    background-color: var(--color-bg-hi);
-  }
+.Link:active {
+  background-color: var(--color-bg-hi);
+}
 
-  .Link.fitbar-Link--vertical {
-    display: block;
-    min-width: 120px;
-  }
+.Link.Link--vertical {
+  display: block;
+  min-width: 120px;
+}
 
-  .Link.is-current {
-    color: var(--color-fg-inv);
-    background-color: var(--color-accent);
-  }
+.Link.is-current {
+  color: var(--color-fg-inv);
+  background-color: var(--color-accent);
 }
