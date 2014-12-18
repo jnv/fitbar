@@ -3,15 +3,15 @@
   "version": "0.2.0",
   "description": "",
   "main": "src/index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "dependencies": {
     "curry": "^1.2.0",
     "domready": "^1.0.7",
     "functional-pipeline": "git+https://github.com/jnv/functional-pipeline.git",
     "mithril": "^0.1.26",
     "rework-inherit": "^0.2.3",
-    "wrap-selectors": "^0.1.0"
+    "rework-namespace": "^0.3.0",
+    "rework-class-prefix": "git+https://github.com/jnv/rework-class-prefix.git"
   },
   "devDependencies": {
     "atomify": "^6.0.0",

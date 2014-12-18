@@ -67,7 +67,7 @@ var cssConfig = {
   entry: 'src/index.css',
   alias: '/bundle.css',
   plugins: [
-    ['wrap-selectors'],
+    ['rework-class-prefix', 'fitbar-', { not: /^is-/ }],
     ['rework-inherit']
   ]
 };
@@ -109,4 +109,8 @@ gulp.task('server', function() {
 
 gulp.task('dist', function(cb) {
   atomifyBuild({output: 'dist/fitbar'}, cb);
+});
+
+
+gulp.task('test', function () {
 });
