@@ -3,28 +3,22 @@
   "version": "0.2.0",
   "description": "",
   "main": "src/index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "atomify --server [ --sync ] --output=.build/fitbar",
+    "build": "atomify --output=dist/fitbar",
+    "build:ext": "atomify --output=ext/chrome/src/inject"
+  },
   "dependencies": {
     "curry": "^1.2.0",
     "domready": "^1.0.7",
-    "functional-pipeline": "git+https://github.com/jnv/functional-pipeline.git",
+    "functional-pipeline": "git://github.com/jnv/functional-pipeline.git",
     "mithril": "^0.1.26",
+    "rework-class-prefix": "git://github.com/jnv/rework-class-prefix.git",
     "rework-inherit": "^0.2.3",
-    "rework-namespace": "^0.3.0",
-    "rework-class-prefix": "git+https://github.com/jnv/rework-class-prefix.git"
+    "rework-namespace": "^0.3.0"
   },
   "devDependencies": {
-    "atomify": "^6.0.0",
-    "gulp": "^3.8.10",
-    "gulp-load-plugins": "^0.8.0",
-    "karma-chai": "*",
-    "karma-coverage": "*",
-    "karma-mocha": "*",
-    "karma-phantomjs-launcher": "*",
-    "karma-sinon": "*",
-    "merge": "^1.2.0",
-    "mocha": "*",
-    "sinon-chai": "*"
+    "atomify": "^6.0.0"
   },
   "atomify": {
     "js": {
@@ -36,10 +30,14 @@
       "alias": "/bundle.css",
       "plugins": [
         [
-          "wrap-selectors"
+          "rework-inherit"
         ],
         [
-          "rework-inherit"
+          "rework-class-prefix",
+          "fitbar-",
+          {
+            "not": "/^is-/"
+          }
         ]
       ]
     }
