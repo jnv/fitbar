@@ -18,7 +18,9 @@
     "rework-namespace": "^0.3.0"
   },
   "devDependencies": {
-    "atomify": "^6.0.0"
+    "atomify": "^6.0.0",
+    "resrcify": "^1.1.3",
+    "tape": "^3.5.0"
   },
   "atomify": {
     "js": {
