@@ -1,18 +1,15 @@
 'use strict';
 var m = require('mithril');
+var mc = require('../component');
 
 function dropdown(options) {
 
   options = options || {
-    renderCloseHanlder: true,
+    renderCloseHandler: true,
     toggleText: 'Více'
   };
 
   var isOpen = m.prop(false);
-
-  var contentWrapper = 'div.fitbar-Dropdown-contents';
-  var targetSig = 'span.fitbar-Link';
-
 
   function close(e) {
     isOpen(false);
@@ -21,21 +18,21 @@ function dropdown(options) {
     isOpen(!isOpen());
   }
 
-  function openClass() {
-    return isOpen() ? ' is-open' : ' is-closed';
+  function openState() {
+    return isOpen() ? 'open' : 'closed';
   }
 
   function closeOverlay() {
     if (isOpen()) {
-      return m('div.fitbar-Dropdown-overlay', {onclick: close});
+      return mc('Dropdown-overlay', {onclick: close});
     }
   }
 
   function view(contents) {
     return m('.fitbar-Dropdown', [
-        m('.fitbar-Dropdown-wrapper', [
-          m(targetSig, {onclick: toggle}, options.toggleText),
-          m(contentWrapper, {class: openClass()}, contents)
+        mc('Dropdown-wrapper', [
+          mc('Link', {tag: 'span', onclick: toggle}, options.toggleText),
+          mc('Dropdown-contents', {state: openState()}, contents)
         ]),
         closeOverlay()
       ]);
