@@ -1,5 +1,6 @@
 'use strict';
 var m = require('mithril');
+var mc = require('../component');
 var dropdown = require('../dropdown');
 
 function linksModel() {
@@ -40,13 +41,12 @@ function view(ctrl) {
   }
 
   function link(data, classMod) {
-    var baseClass = '.fitbar-Link';
-    var current = data.current ? '.is-current' : '';
-    var mod = classMod ? (baseClass + '--' + classMod) : '';
-    return m('a' + baseClass + mod + current, {href: data.url, title: data.desc}, data.title);
+    var current = data.current ? 'current' : '';
+    // return m('a' + baseClass + mod + current, {href: data.url, title: data.desc}, data.title);
+    return mc('Link', {tag: 'a', state: current, mod: classMod, href: data.url, title: data.desc}, data.title);
   }
 
-  return m('.fitbar-Bar', [
+  return mc('Bar', [
     ctrl.linksExpanded.map(classModifier('visible', link)),
     ctrl.linksDropdown.view(ctrl.linksHidden.map(classModifier('vertical', link))),
   ]);
