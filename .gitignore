@@ -19,3 +19,9 @@ Thumbs.db
 *~
 dist/
 ext/chrome/src/
+.build/
+
+# Chrome #
+##########
+*.crx
+*.pem
