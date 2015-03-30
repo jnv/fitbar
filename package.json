@@ -6,7 +6,8 @@
   "scripts": {
     "start": "atomify --server [ --sync ] --output=.build/fitbar",
     "build": "atomify --output=dist/fitbar",
-    "build:ext": "atomify --output=ext/chrome/src/inject"
+    "build:ext": "atomify --output=ext/chrome/src/inject",
+    "test": "tape src/test/*_test.js"
   },
   "dependencies": {
     "curry": "^1.2.0",
