@@ -6,7 +6,9 @@ var filterBody = function(el) {
   return el && el.nodeName === 'BODY';
 };
 
-var addedBody = pipe(u.extractValue('addedNodes'), u.filter(filterBody), u.last);
+var addedBody = pipe(u.extractValue('addedNodes'),
+                     u.filter(filterBody),
+                     u.last);
 
 // configuration of the observer:
 var mutationOptions = {childList: true};

@@ -1,5 +1,4 @@
 'use strict';
-var m = require('mithril');
 var mc = require('../component');
 var dropdown = require('../dropdown');
 
@@ -10,7 +9,7 @@ function linksModel() {
 
   for (var i = 0; i < links.length; i++) {
     var l = links[i];
-    if(~l.url.indexOf(location)) {
+    if (~l.url.indexOf(location)) {
       l.current = true;
       break;
     }
@@ -43,7 +42,9 @@ function view(ctrl) {
   function link(data, classMod) {
     var current = data.current ? 'current' : '';
     // return m('a' + baseClass + mod + current, {href: data.url, title: data.desc}, data.title);
-    return mc('Link', {tag: 'a', state: current, mod: classMod, href: data.url, title: data.desc}, data.title);
+    return mc('Link',
+              {tag: 'a', state: current, mod: classMod, href: data.url, title: data.desc},
+              data.title);
   }
 
   return mc('Bar', [

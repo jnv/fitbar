@@ -3,8 +3,9 @@ var m = require('mithril');
 
 var PREFIX = 'fitbar-';
 
+// TODO: Yield pure JSON-like struct to m()
 module.exports = function component(name, attrs, children) {
-  if(attrs instanceof Array) {
+  if (attrs instanceof Array) {
     children = attrs;
     attrs = {};
   }
@@ -19,14 +20,14 @@ module.exports = function component(name, attrs, children) {
   delete attrs.mod;
 
   var prefixedName = PREFIX + name;
-  if(mod) {
+  if (mod) {
     mod = prefixedName + '--' + mod;
   }
-  if(state) {
+  if (state) {
     state = 'is-' + state;
   }
 
   attrs.class = [prefixedName, mod, state, classes].join(' ');
 
   return m(tag, attrs, children);
-}
+};

@@ -11,10 +11,10 @@ function dropdown(options) {
 
   var isOpen = m.prop(false);
 
-  function close(e) {
+  function close() {
     isOpen(false);
   }
-  function toggle(e) {
+  function toggle() {
     isOpen(!isOpen());
   }
 

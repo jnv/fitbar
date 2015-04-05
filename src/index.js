@@ -46,7 +46,7 @@ require('domready')(function inject() {
   // apply negative margins for root container
   var sizes = outerSizes(document.body);
 
-  for(var dir in sizes) {
+  for (var dir in sizes) {
     var size = sizes[dir];
     root.style['margin' + dir] = '-' + size + 'px';
   }
