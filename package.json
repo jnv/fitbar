@@ -16,7 +16,8 @@
     "mithril": "^0.1.26",
     "rework-class-prefix": "git://github.com/jnv/rework-class-prefix.git",
     "rework-inherit": "^0.2.3",
-    "rework-namespace": "^0.3.0"
+    "rework-namespace": "^0.3.0",
+    "rework-plugin-colors": "^1.0.3"
   },
   "devDependencies": {
     "atomify": "^6.0.0",
@@ -42,6 +43,9 @@
           {
             "not": "/^is-/"
           }
+        ],
+        [
+          "rework-plugin-colors"
         ]
       ]
     }
