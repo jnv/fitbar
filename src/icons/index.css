@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'fitbar-icons';
+  src:url('fonts/icons.eot?c8mmm');
+  src:url('fonts/icons.eot?#iefixc8mmm') format('embedded-opentype'),
+      url('fonts/icons.woff?c8mmm') format('woff'),
+      url('fonts/icons.ttf?c8mmm') format('truetype'),
+      url('fonts/icons.svg?c8mmm#icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.Icon {
+  font-family: 'fitbar-icons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.Icon--settings:before {
+  content: "\f013";
+}
+
+.Icon--clock:before {
+  content: "\f017";
+}
+
+.Icon--notifications:before {
+  content: "\f071";
+}
+
+.Icon--globe:before {
+  content: "\f0ac";
+}
+
+.icon-list:before {
+  content: "\f0ca";
+}
