@@ -41,15 +41,16 @@ function view(ctrl) {
 
   function link(data, classMod) {
     var current = data.current ? 'current' : '';
-    // return m('a' + baseClass + mod + current, {href: data.url, title: data.desc}, data.title);
+    var child = mc('Icon', {tag: 'span', mod: data.id}, data.title);
+    var attr = {tag: 'a', state: current, mod: classMod, href: data.url, title: data.desc};
     return mc('Link',
-              {tag: 'a', state: current, mod: classMod, href: data.url, title: data.desc},
-              data.title);
+              attr,
+              child);
   }
 
   return mc('Bar', [
     ctrl.linksExpanded.map(classModifier('visible', link)),
-    ctrl.linksDropdown.view(ctrl.linksHidden.map(classModifier('vertical', link))),
+    ctrl.linksDropdown.view(ctrl.linksHidden.map(classModifier('vertical', link)))
   ]);
 }
 
