@@ -32,15 +32,15 @@
 }
 /* arrow's fill */
 .Dropdown-contents:after {
-  /*border-color: rgba(136, 183, 213, 0);*/
   bottom: calc(100% - 1px); /* shift pixel down to overlap container's border */
+  border-color: rgba(var(--color-bg), 0); /* invisible border for smoothing */
   border-bottom-color: var(--color-bg);
   border-width: var(--arrow-size);
   margin-left: -var(--arrow-size);
 }
 /* outer border */
 .Dropdown-contents:before {
-  /*border-color: rgba(194, 225, 245, 0);*/
+  border-color: rgba(var(--color-border-outer), 0);
   border-bottom-color: var(--color-border-outer);
   border-width: var(--arrow-size);
   margin-left: -var(--arrow-size);
@@ -52,6 +52,7 @@
   box-shadow: inset 0 0 1px var(--color-border-inner);
   display: none;
   position: absolute;
+  left: -50%;
   z-index: 999999;
   margin-top: 5px;
   border-radius: var(--dropdown-radius);
