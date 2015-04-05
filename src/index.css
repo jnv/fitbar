@@ -1,10 +1,13 @@
 :root {
-  --color-bg: #424242;
-  --color-bg-hi: #292929;
+  --color-bg: #383e42;
+  --color-bg-hi: #30373b;
   --color-fg: #999;
   --color-fg-hi: #fff;
   --color-fg-inv: #000;
-  --color-accent: #f3ad21;
+  --color-border-outer: #363333;
+  --color-border-inner: #494f52;
+  /* Sharp alternate "brand" color */
+  --color-accent: #0071bb;
 
   --font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
