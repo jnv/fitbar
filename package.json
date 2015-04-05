@@ -26,6 +26,10 @@
     "tape": "^3.5.0"
   },
   "atomify": {
+    "assets": {
+      "dest": "dist/assets",
+      "prefix": "assets/"
+    },
     "js": {
       "entry": "src/index.js",
       "alias": "/fitbar.js"
