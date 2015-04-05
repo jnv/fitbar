@@ -53,3 +53,5 @@
   color: var(--color-fg-inv);
   /*background-color: var(--color-accent);*/
 }
+
+@import './links';
