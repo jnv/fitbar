@@ -1,3 +1,4 @@
+'use strict';
 var test = require('tape');
 var _ = require('lodash');
 var mc = require('../component');
@@ -12,14 +13,18 @@ function hasClass(element, klass) {
 }
 
 test('creates virtual element with classes', function(t) {
-  var e = mc('Dropdown', {state: 'open', class: 'original-class another', click: function(){} });
+  var e = mc('Dropdown',
+            {state: 'open', class: 'original-class another',
+            click: function(){}});
   var classes = classNames(e);
 
   t.equal(e.tag, 'div', 'expected to be div by default');
 
-  var expectedClasses = ['fitbar-Dropdown', 'is-open', 'original-class', 'another'];
+  var expectedClasses = ['fitbar-Dropdown',
+                          'is-open',
+                          'original-class',
+                          'another'];
 
-  var diff = _.difference(classes, expectedClasses);
   t.deepEqual(classes, expectedClasses, 'expected classes to be equivalent');
 
   t.false(e.attrs.state, 'state attr should be unset');
@@ -47,7 +52,8 @@ test('allows children as a second argument', function(t) {
 
   t.assert(hasClass(e, 'fitbar-Dropdown'));
   t.equal(e.children.length, 1, 'expected to have one children');
-  t.assert(hasClass(e.children[0], 'fitbar-Dropdown-link'), 'expected a children component Dropdown-link');
+  t.assert(hasClass(e.children[0], 'fitbar-Dropdown-link'),
+          'expected a children component Dropdown-link');
 
   t.end();
 });
