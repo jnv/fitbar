@@ -1,6 +1,8 @@
 'use strict';
+var m = require('mithril');
 var mc = require('../component');
 var dropdown = require('../dropdown');
+var icon = require('../icon');
 
 function linksModel() {
   var links = require('./links');
@@ -17,8 +19,6 @@ function linksModel() {
 
   return links;
 }
-
-
 
 //controller class
 function controller() {
@@ -39,9 +39,19 @@ function view(ctrl) {
     };
   }
 
+  function linkIcon(data) {
+    var i = icon(data.id);
+    var title = mc('Link-title', {tag: 'span'}, data.title);
+    if (i) {
+      i = mc('Link-icon', {tag: 'span'}, m.trust(i));
+    }
+    return [i, title];
+  }
+
   function link(data, classMod) {
     var current = data.current ? 'current' : '';
-    var child = mc('Icon', {tag: 'span', mod: data.id}, data.title);
+    // var child = mc('Icon', {tag: 'span', mod: data.id}, data.title);
+    var child = linkIcon(data);
     var attr = {tag: 'a', state: current, mod: classMod, href: data.url, title: data.desc};
     return mc('Link',
               attr,
