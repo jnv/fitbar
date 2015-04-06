@@ -54,4 +54,10 @@
   /*background-color: var(--color-accent);*/
 }
 
-@import './links';
+.Link-icon {
+  display: inline-block;
+}
+.Link-icon svg {
+  width: 16px;
+  height: auto;
+}

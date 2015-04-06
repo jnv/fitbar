@@ -41,10 +41,10 @@ function view(ctrl) {
 
   function linkIcon(data) {
     var i = icon(data.id);
-    var title = mc('Link-title', {tag: 'span'}, data.title);
     if (i) {
       i = mc('Link-icon', {tag: 'span'}, m.trust(i));
     }
+    var title = mc('Link-title', {tag: 'span'}, data.title);
     return [i, title];
   }
 
