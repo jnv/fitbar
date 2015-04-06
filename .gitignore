@@ -18,7 +18,7 @@ ehthumbs.db
 Thumbs.db
 .tmp
 *~
-dist/
+dist/*
 ext/chrome/src/
 .build/
 
@@ -30,3 +30,4 @@ ext/chrome/src/
 # exceptions #
 ##############
 !node_modules/fit-icons
+!dist/index.html
