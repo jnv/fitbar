@@ -12,6 +12,5 @@
   --font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-@import './icons';
 @import './bar';
 @import './dropdown';
