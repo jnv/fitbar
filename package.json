@@ -14,15 +14,15 @@
     "domready": "^1.0.7",
     "functional-pipeline": "git://github.com/jnv/functional-pipeline.git",
     "include-folder": "^0.7.0",
-    "mithril": "^0.1.26",
+    "mithril": "^0.1.34",
     "rework-class-prefix": "git://github.com/jnv/rework-class-prefix.git",
     "rework-inherit": "^0.2.3",
     "rework-namespace": "^0.3.0",
     "rework-plugin-colors": "^1.0.3"
   },
   "devDependencies": {
-    "atomify": "^6.0.0",
-    "lodash": "^3.6.0",
+    "atomify": "^7.0.2",
+    "lodash": "^3.6",
     "mithril-query": "^0.5.3",
     "resrcify": "^1.1.3",
     "tape": "^3.5.0"
