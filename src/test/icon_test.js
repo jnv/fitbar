@@ -1,12 +1,14 @@
 'use strict';
 var test = require('tape');
 var icon = require('../icon');
+var mq = require('mithril-query');
 
-
-test('exposes SVG icons as strings', function(t) {
+test('creates an icon component', function(t) {
   var i = icon('settings');
-  t.assert(i.match(/<svg /i), 'returns an SVG element');
-  t.equal(icon('non-existent-icon'), '',
-          'returns empty string if icon does not exist');
+  var $i = mq(i);
+  t.ok($i.has('span'), 'icon is a span');
+  t.ok($i.has(':root[class~=fitbar-Icon]'), 'icon has a prefixed Icon class');
+  t.ok($i.has(':root[class~=fitbar-Icon--settings]'), 'icon has a class of given variation');
+  t.ok($i.has('span:contains("")'), 'icon is an empty node');
   t.end();
 });
