@@ -23,6 +23,7 @@
   "devDependencies": {
     "atomify": "^6.0.0",
     "lodash": "^3.6.0",
+    "mithril-query": "^0.5.3",
     "resrcify": "^1.1.3",
     "tape": "^3.5.0"
   },
