@@ -39,23 +39,17 @@ function view(ctrl) {
     };
   }
 
-  function linkIcon(data) {
-    var i = icon(data.id);
-    if (i) {
-      i = mc('Link-icon', {tag: 'span'}, m.trust(i));
-    }
-    var title = mc('Link-title', {tag: 'span'}, data.title);
-    return [i, title];
-  }
-
   function link(data, classMod) {
     var current = data.current ? 'current' : '';
-    // var child = mc('Icon', {tag: 'span', mod: data.id}, data.title);
-    var child = linkIcon(data);
     var attr = {tag: 'a', state: current, mod: classMod, href: data.url, title: data.desc};
+    var children = [
+      icon(data.id),
+      mc('Link-title', {tag: 'span'}, data.title)
+    ];
+
     return mc('Link',
               attr,
-              child);
+              children);
   }
 
   return mc('Bar', [
