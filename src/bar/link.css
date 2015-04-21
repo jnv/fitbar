@@ -1,0 +1,37 @@
+.Link,
+.Link:link,
+.Link:visited {
+  inherit: %default;
+  padding: var(--bar-padding-v) 15px;
+  display: inline-block;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.Link:hover,
+.Link:active,
+.Link:focus {
+  color: var(--color-fg-hi);
+}
+
+.Link:active {
+  background-color: var(--color-bg-hi);
+}
+
+.Link.Link--vertical {
+  display: block;
+  min-width: 120px;
+}
+
+.Link.is-current {
+  color: var(--color-fg-inv);
+  /*background-color: var(--color-accent);*/
+}
+
+.Link-icon {
+  display: inline-block;
+}
+.Link-icon svg {
+  width: 16px;
+  height: auto;
+}

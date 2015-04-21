@@ -76,5 +76,5 @@ module.exports = [
       title: 'Usermap',
       desc: 'Databáze uživatelů ČVUT',
       url: 'https://usermap.cvut.cz/'
-    },
+    }
 ];

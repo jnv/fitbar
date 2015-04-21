@@ -8,8 +8,18 @@
   --color-border-inner: #494f52;
   /* Sharp alternate "brand" color */
   --color-accent: #0071bb;
-
+  --font-size: 14px;
   --font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+%default {
+  background: transparent;
+  color: var(--color-fg);
+  margin: 0;
+  padding: 0;
+  font-size: var(--font-size);
+  line-height: var(--font-size);
+  text-decoration: none;
 }
 
 @import './icon';

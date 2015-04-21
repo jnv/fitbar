@@ -1,17 +1,4 @@
-
-%default {
-  background: transparent;
-  color: var(--color-fg);
-  font-family: var(--font-family);
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-  line-height: 14px;
-  text-decoration: none;
-}
-
 :root {
-  --bar-height: ;
   --bar-padding-v: 10px;
 }
 
@@ -24,40 +11,4 @@
   background: linear-gradient(to bottom, #2a3233,#3c3e42 calc(100% - 3px),#414448 calc(100% - 2px), #4b5355 calc(100% - 1px));
 }
 
-.Link,
-.Link:link,
-.Link:visited {
-  inherit: %default;
-  padding: var(--bar-padding-v) 15px;
-  display: inline-block;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.Link:hover,
-.Link:active,
-.Link:focus {
-  color: var(--color-fg-hi);
-}
-
-.Link:active {
-  background-color: var(--color-bg-hi);
-}
-
-.Link.Link--vertical {
-  display: block;
-  min-width: 120px;
-}
-
-.Link.is-current {
-  color: var(--color-fg-inv);
-  /*background-color: var(--color-accent);*/
-}
-
-.Link-icon {
-  display: inline-block;
-}
-.Link-icon svg {
-  width: 16px;
-  height: auto;
-}
+@import './link';
