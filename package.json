@@ -10,6 +10,7 @@
     "test": "tape src/test/*_test.js"
   },
   "dependencies": {
+    "atomify-css": "git://github.com/jnv/atomify-css.git",
     "curry": "^1.2.0",
     "domready": "^1.0.7",
     "functional-pipeline": "git://github.com/jnv/functional-pipeline.git",
