@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "atomify --server [ --sync --st=dist/ ] --output=dist/fitbar --debug",
+    "start": "atomify --server [ --sync --st.path=dist/ ] --output=dist/fitbar --debug",
     "build": "atomify --output=dist/fitbar",
     "build:ext": "atomify --output=ext/chrome/src/inject",
     "test": "tape src/test/*_test.js"
