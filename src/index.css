@@ -18,6 +18,7 @@
   margin: 0;
   padding: 0;
   font-size: var(--font-size);
+  font-family: var(--font-family);
   line-height: var(--font-size);
   text-decoration: none;
 }
