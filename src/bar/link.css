@@ -24,14 +24,10 @@
 }
 
 .Link.is-current {
-  color: var(--color-fg-inv);
-  /*background-color: var(--color-accent);*/
+  color: var(--color-fg-hi);
+  /*background-color: var(--color-bg-hi);*/
 }
 
 .Link-icon {
   display: inline-block;
-}
-.Link-icon svg {
-  width: 16px;
-  height: auto;
 }
