@@ -41,7 +41,13 @@ function view(ctrl) {
 
   function link(data, classMod) {
     var current = data.current ? 'current' : '';
-    var attr = {tag: 'a', state: current, mod: classMod, href: data.url, title: data.desc};
+    var attr = {
+      tag: 'a',
+      state: current,
+      mod: classMod,
+      href: data.url,
+      title: data.desc
+    };
     var children = [
       icon(data.id),
       mc('Link-title', {tag: 'span'}, data.title)
@@ -54,7 +60,9 @@ function view(ctrl) {
 
   return mc('Bar', [
     ctrl.linksExpanded.map(classModifier('visible', link)),
-    ctrl.linksDropdown.view(ctrl.linksHidden.map(classModifier('vertical', link)))
+    ctrl.linksDropdown.view(
+      ctrl.linksHidden.map(classModifier('vertical', link))
+    )
   ]);
 }
 
